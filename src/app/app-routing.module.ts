@@ -7,12 +7,10 @@ const routes: Routes = [
   { 
     path: 'admin',
     loadChildren: () => import('./admin/pages/login/login.module').then(m => m.LoginModule),
-    // canActivate: [AuthGuard] // add the guard to the canActivate property
   },
   // { 
   //   path: 'realTime',
   //   loadChildren: () => import('./admin/pages/login/login.module').then(m => m.LoginModule),
-  //   // canActivate: [AuthGuard] // add the guard to the canActivate property
   // },
   // { 
   //   path: 'system',

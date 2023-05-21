@@ -14,6 +14,7 @@ import { NotFoundComponent } from './commonComponents/not-found/not-found.compon
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { DropdownComponent } from './commonComponents/dropdown/dropdown.component';
 import { ForgotPasswordComponent } from './admin/pages/forgot-password/forgot-password.component';
+import { AuthPagesComponent } from './admin/auth-pages/auth-pages.component';
 
 
 
@@ -25,7 +26,8 @@ import { ForgotPasswordComponent } from './admin/pages/forgot-password/forgot-pa
     LoginComponent,
     NotFoundComponent,
     DropdownComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    AuthPagesComponent
   ],
   imports: [
     MatSlideToggleModule,
