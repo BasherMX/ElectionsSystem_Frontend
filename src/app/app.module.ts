@@ -6,15 +6,18 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Angular Material
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
+
 import { LoginComponent } from './admin/pages/login/login.component';
 import { NotFoundComponent } from './commonComponents/not-found/not-found.component';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { DropdownComponent } from './commonComponents/dropdown/dropdown.component';
 import { ForgotPasswordComponent } from './admin/pages/forgot-password/forgot-password.component';
 import { AuthPagesComponent } from './admin/auth-pages/auth-pages.component';
+import { InputComponent } from './commonComponents/input/input.component';
+import { BotonComponent } from './commonComponents/boton/boton.component';
+import { SideBarComponent } from './admin/adminComponents/side-bar/side-bar.component';
+import { NavBarComponent } from './admin/adminComponents/nav-bar/nav-bar.component';
+import { AuthPagesVotationComponent } from './votation/auth-pages-votation/auth-pages-votation.component';
+
 
 
 
@@ -27,13 +30,14 @@ import { AuthPagesComponent } from './admin/auth-pages/auth-pages.component';
     NotFoundComponent,
     DropdownComponent,
     ForgotPasswordComponent,
-    AuthPagesComponent
+    AuthPagesComponent,
+    InputComponent,
+    BotonComponent,
+    SideBarComponent,
+    NavBarComponent,
+    AuthPagesVotationComponent,
   ],
   imports: [
-    MatSlideToggleModule,
-    MatProgressSpinnerModule,
-    MatCardModule,
-    MatButtonModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule

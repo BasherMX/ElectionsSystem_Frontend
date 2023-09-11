@@ -8,14 +8,13 @@ const routes: Routes = [
     path: 'admin',
     loadChildren: () => import('./admin/pages/login/login.module').then(m => m.LoginModule),
   },
+  { 
+    path: 'votation',
+    loadChildren: () => import('./votation/auth-pages-votation/auth-votation.module').then(m => m.AuthVotationModule),
+  },
   // { 
   //   path: 'realTime',
   //   loadChildren: () => import('./admin/pages/login/login.module').then(m => m.LoginModule),
-  // },
-  // { 
-  //   path: 'system',
-  //   loadChildren: () => import('./admin/pages/login/login.module').then(m => m.LoginModule),
-  //   // canActivate: [AuthGuard] // add the guard to the canActivate property
   // },
   {
     path: '**',
