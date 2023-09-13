@@ -8,7 +8,7 @@ const rts: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
   { path: 'login', component: LoginComponent, pathMatch: 'full' },
   { 
-    path: 'Auth',
+    path: 'auth',
     loadChildren: () => import('../../auth-pages/auth-pages.module').then(m => m.AuthPagesModule),
     // canActivate: [AuthGuard] // add the guard to the canActivate property
   },
