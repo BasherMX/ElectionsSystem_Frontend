@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthPagesComponent } from './auth-pages.component';
+import { DashboardOptionComponent } from '../adminComponents/dashboard-option/dashboard-option.component';
 
 export const routes: Routes = [
   {
@@ -26,6 +27,7 @@ export const routes: Routes = [
 @NgModule({
   declarations: [
     DashboardComponent,
+    DashboardOptionComponent,
   ],
   imports: [
     CommonModule,

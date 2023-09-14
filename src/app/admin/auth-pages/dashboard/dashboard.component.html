@@ -1,1 +1,13 @@
-<p>Dashboard</p>
+<div class="container mt-5">
+    <h2>Bienvenid@</h2>
+    <h4>Ulises Vázquez</h4>
+
+    <div class="d-flex justify-content-evenly dashboardOptions">
+        <app-dashboard-option [routerLink]="'/admin/auth/excersice'" Optioncolor="1" image="image 6.png" name="Ejercicios Electorales"></app-dashboard-option>
+        <app-dashboard-option [routerLink]="'/admin/auth/partyes'" Optioncolor="2" image="image9.png" name="Partidos"></app-dashboard-option>
+        <app-dashboard-option [routerLink]="'/admin/auth/users'" Optioncolor="3" image="image 10.png" name="Usuarios"></app-dashboard-option>
+
+        <!-- PARA ADMINISTRADORES JR. -->
+        <!-- <app-dashboard-option Optioncolor="1" image="image 10.png" name="Electores"></app-dashboard-option> -->
+    </div>
+</div>

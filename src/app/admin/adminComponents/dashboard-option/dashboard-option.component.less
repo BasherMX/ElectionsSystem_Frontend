@@ -1,0 +1,71 @@
+@import '../../../../vars.less';
+
+@Back: @PinkPrincipal;
+
+.dashboardOptionBox{
+    transition: all ease .2s;
+    width: 280px;
+    height: 180px;
+    font-size: 1.3rem;
+    transform: scale(.9);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.dashboardOptionBox:hover {
+    > .dashboardOption{
+        > .dashboardOption_into{
+            transform: scale(2);
+        }
+        box-shadow: 0px 7px 10px rgba(0 0 0 /15%);
+    }
+    transform: scale(.91);
+}
+
+
+.dashboardOption{
+    transition: all ease .6s;
+    width: 280px;
+    height: 150px;
+    border-radius: 6px;
+    background-color: @Back;
+    position: relative;
+    display: grid;
+    place-items: center;
+    box-shadow: 0px 4px 8px rgba(0 0 0 /10%);
+}
+
+.dashboardOption>img{
+    z-index: 2;
+    min-width: 190px;
+    max-height: 90%;
+    aspect-ratio: 16/9;
+}
+
+.dashboardOption_into{
+    transition: all ease .6s;
+    position: absolute;
+    background-color: @PinkSecondary;
+    width: 350px;
+    height: 350px;
+    border-radius: 100%;
+    top: -2%;
+    right: -60%;
+}
+
+
+.color2{
+    background-color: @IrisPrincipal;
+    
+    .dashboardOption_into{
+        background-color: @IrisSecondary;
+    }
+}
+
+.color3{
+    background-color: @purplePrincipal;
+    
+    .dashboardOption_into{
+        background-color: @PurpleSecondary;
+    }
+}

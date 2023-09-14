@@ -2,40 +2,38 @@
     <img class="logo" src="../../../../assets/Images/Logo_Instituto_Nacional_Electoral.svg.svg" alt="logoIne">
 
     <div class="buttonsHub">
-        <button class="btn">
+        <button class="btn" [routerLink]="'/admin/auth/dashboard'">
             <div>
                 <i class="fa fa-home" aria-hidden="true"></i>
                 <span>Inicio</span>
             </div>
         </button>
-        <button class="btn">
+
+        <!-- BOTONES PARA ADMINISTRADOR SR. -->
+        <button class="btn" [routerLink]="'/admin/auth/excercise/control'">
             <div>
                 <i class="fa fa-archive" aria-hidden="true"></i>
                 <span>Ejercicios</span>
             </div>
         </button>
-        <button class="btn">
-            <div>
-                <i class="fa fa-file" aria-hidden="true"></i>
-                <span>Boletas</span>
-            </div>
-        </button>
-        <button class="btn">
-            <div>
-                <i class="fa fa-user"></i>
-                <span>Candidatos</span>
-            </div>
-        </button>
-        <button class="btn">
+        <button class="btn" [routerLink]="'/admin/auth/partyes/control'">
             <div>
                 <i class="fa fa-flag"></i>
                 <span>Partidos</span>
             </div>
         </button>
-        <button class="btn">
+        <button class="btn" [routerLink]="'/admin/auth/users/control'">
             <div>
                 <i class="fa fa-users"></i>
                 <span>Usuarios</span>
+            </div>
+        </button>
+
+        <!--    BOTON PARA ADMINISTRADOR JR. -->
+        <button class="btn" [routerLink]="'/admin/auth/users/control'">
+            <div>
+                <i class="fa fa-users"></i>
+                <span>Electores</span>
             </div>
         </button>
     </div>

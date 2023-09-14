@@ -17,6 +17,7 @@ import { BotonComponent } from './commonComponents/boton/boton.component';
 import { SideBarComponent } from './admin/adminComponents/side-bar/side-bar.component';
 import { NavBarComponent } from './admin/adminComponents/nav-bar/nav-bar.component';
 import { AuthPagesVotationComponent } from './votation/auth-pages-votation/auth-pages-votation.component';
+import { DashboardOptionComponent } from './admin/adminComponents/dashboard-option/dashboard-option.component';
 
 
 
@@ -35,7 +36,7 @@ import { AuthPagesVotationComponent } from './votation/auth-pages-votation/auth-
     BotonComponent,
     SideBarComponent,
     NavBarComponent,
-    AuthPagesVotationComponent,
+    AuthPagesVotationComponent
   ],
   imports: [
     BrowserModule,
