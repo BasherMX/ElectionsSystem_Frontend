@@ -1,1 +1,23 @@
 <p>vote works!</p>
+
+
+<h2>{{step}}</h2>
+
+
+
+
+<div *ngIf="step === 1">
+    <p>Primera Parte</p>
+</div>
+
+<div *ngIf="step === 2">
+    <p>Segunda Parte</p>
+</div>
+
+<div *ngIf="step === 3">
+    <p>Tercera Parte</p>
+</div>
+
+
+
+<button (click)="up()">Next</button>

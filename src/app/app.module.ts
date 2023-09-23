@@ -43,6 +43,9 @@ import { DashboardOptionComponent } from './admin/adminComponents/dashboard-opti
     AppRoutingModule,
     BrowserAnimationsModule
   ],
+  exports:      [ 
+    BotonComponent
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

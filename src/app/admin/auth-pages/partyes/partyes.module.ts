@@ -4,6 +4,8 @@ import { ControlComponent } from './control/control.component';
 import { NewComponent } from './new/new.component';
 import { EditComponent } from './edit/edit.component';
 import { RouterModule, Routes } from '@angular/router';
+import { BotonComponent } from 'src/app/commonComponents/boton/boton.component';
+import { AppModule } from 'src/app/app.module';
 
 const rts: Routes = [
   { path: '', redirectTo: 'control', pathMatch: 'full'},
@@ -20,7 +22,7 @@ const rts: Routes = [
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(rts)
+    RouterModule.forChild(rts),
   ]
 })
 export class PartyesModule { }
