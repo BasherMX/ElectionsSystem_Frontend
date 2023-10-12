@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NgForm } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ControlComponent } from './control/control.component';
 import { NewComponent } from './new/new.component';
@@ -6,6 +6,7 @@ import { EditComponent } from './edit/edit.component';
 import { RouterModule, Routes } from '@angular/router';
 import { BotonComponent } from 'src/app/commonComponents/boton/boton.component';
 import { AppModule } from 'src/app/app.module';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 const rts: Routes = [
   { path: '', redirectTo: 'control', pathMatch: 'full'},
@@ -22,6 +23,7 @@ const rts: Routes = [
   ],
   imports: [
     CommonModule,
+    NgxPaginationModule,
     RouterModule.forChild(rts),
   ]
 })
