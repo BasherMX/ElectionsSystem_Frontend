@@ -18,7 +18,7 @@ import { SideBarComponent } from './admin/adminComponents/side-bar/side-bar.comp
 import { NavBarComponent } from './admin/adminComponents/nav-bar/nav-bar.component';
 import { AuthPagesVotationComponent } from './votation/auth-pages-votation/auth-pages-votation.component';
 import { DashboardOptionComponent } from './admin/adminComponents/dashboard-option/dashboard-option.component';
-
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -40,6 +40,7 @@ import { DashboardOptionComponent } from './admin/adminComponents/dashboard-opti
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule
   ],
