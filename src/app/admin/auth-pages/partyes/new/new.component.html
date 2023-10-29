@@ -1,1 +1,56 @@
-<p>new works!</p>
+<div class="container container_header">
+    <div class="container_title">Nuevo Partido Politico</div>
+</div>
+
+<div class="container bg-white rounded_borders">
+    <div class="row g-3 align-items-start">
+		<div class="col-md-4">
+				<div class="form-group">
+					<label for="nameInput" class="new_input">Nombre</label>
+					<div class="search_input">
+						<input type="text" class="form-control" id="nameInput" placeholder="Ingrese el nombre">
+					</div>
+				</div>
+		</div>
+		<div class="col-md-4">
+				<div class="form-group">
+					<label for="acronimoInput" class="new_input">Acronimo</label>
+					<div class="search_input">
+						<input type="text" class="form-control" id="acronimoInput" placeholder="Ingrese el acronimo">
+					</div>
+				</div>
+		</div>
+		<div class="col-md-4">
+				<div class="form-group">
+					<label for="dateInput" class="new_input">Seleccione el año de fundación</label>
+					<div class="search_input">
+						<input type="date" class="form-control" id="dateInput">
+					</div>
+				</div>
+		</div>
+    </div>
+    <div class="row g-3 justify-content-around">
+		<div class="col-md-4 text-center">
+				<label for="colorInput" class="new_input">Seleccione el Color del partido</label>
+				<div>
+					<input type="color" class="form-control-color" id="colorInput">
+				</div>
+		</div>
+		<div class="col-md-4 text-center">
+			<label for="idLogo" class="new_input">Seleccione el logo del partido</label>
+			<div>
+				<img src="assets/Images/select_party_icon.svg" alt="" class="img-fluid" width="150px" height="auto">
+				<input type="file" class="form-control" id="idLogo" hidden>
+			</div>
+		</div>
+    </div>
+</div>
+
+<div class="container cancel_confirm">
+    <button type="button" class="btn btn-primary cancel_btn">
+        Cancelar
+    </button>
+    <button type="button" class="btn btn-primary registrar_btn">
+        Registrar Partido
+    </button>
+</div>
