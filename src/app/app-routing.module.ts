@@ -10,7 +10,7 @@ const routes: Routes = [
     loadChildren: () => import('./admin/pages/login/login.module').then(m => m.LoginModule),
   },
   { 
-    path: 'admin/inicio',
+    path: 'admin/dashboard',
     component: DashboardComponent
   },
   { 
@@ -20,6 +20,18 @@ const routes: Routes = [
   { 
     path: 'admin/users',
     loadChildren: () => import('./admin/auth-pages/users/users.module').then(m => m.UsersModule),
+  },
+  { 
+    path: 'admin/boletas',
+    loadChildren: () => import('./admin/auth-pages/boletas/boletas.module').then(m => m.BoletasModule),
+  },
+  { 
+    path: 'admin/candidates',
+    loadChildren: () => import('./admin/auth-pages/candidates/candidates.module').then(m => m.CandidatesModule),
+  },
+  { 
+    path: 'admin/elections',
+    loadChildren: () => import('./admin/auth-pages/elections/elections.module').then(m => m.ElectionsModule),
   },
   { 
     path: 'votation',
