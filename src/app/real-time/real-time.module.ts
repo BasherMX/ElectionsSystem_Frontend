@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ElectionsListComponent } from './elections-list/elections-list.component';
 import { ResultsComponent } from './results/results.component';
@@ -26,7 +26,8 @@ export const routes: Routes = [
     ResultsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule.forChild(routes),
   ]
 })
 export class RealTimeModule { }
