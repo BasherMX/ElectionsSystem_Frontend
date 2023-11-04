@@ -19,6 +19,7 @@ import { NavBarComponent } from './admin/adminComponents/nav-bar/nav-bar.compone
 import { AuthPagesVotationComponent } from './votation/auth-pages-votation/auth-pages-votation.component';
 import { DashboardOptionComponent } from './admin/adminComponents/dashboard-option/dashboard-option.component';
 import { FormsModule } from '@angular/forms';
+import { RealTimeComponent } from './real-time/real-time.component';
 
 
 
@@ -36,7 +37,8 @@ import { FormsModule } from '@angular/forms';
     BotonComponent,
     SideBarComponent,
     NavBarComponent,
-    AuthPagesVotationComponent
+    AuthPagesVotationComponent,
+    RealTimeComponent
   ],
   imports: [
     BrowserModule,
