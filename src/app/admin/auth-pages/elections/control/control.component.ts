@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { NewComponent } from '../new/new.component';
 
 @Component({
   selector: 'app-control',
@@ -20,7 +22,11 @@ export class ControlComponent {
   itemsPerPage = 6; // Cambia este valor según tus necesidades
   searchText: string = '';
 
-  
+  constructor(private router: Router){}
+
+  redirigir(){
+    this.router.navigate(['admin/elections/new']);
+  }
 
   editarItem(item: any) {
     // Lógica para editar el elemento

@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./new.component.less']
 })
 export class NewComponent {
+  showModal = false;
 
+  openModal(){
+    this.showModal = true;
+  }
+
+  closeModal(){
+    this.showModal = false;
+  }
 }

@@ -1,4 +1,67 @@
 <div class="container container_header">
+    <div class="container_title">Agregar Boleta</div>
+</div>
+
+<div class="container bg-white searchBar">
+    <div class="flex_parent">
+        <img src="assets/Images/new_boleta_icon.svg" alt="" class="img-fluid" width="300px" height="auto" (click)="openModal()">
+    </div>
+</div>
+
+<div class="container cancel_confirm">
+    <button type="button" class="btn btn-primary cancel_btn">
+        Cancelar
+    </button>
+    <button type="button" class="btn btn-primary registrar_btn">
+        Terminar Registro
+    </button>
+</div>
+
+<div *ngIf="showModal">
+    <div class="modal-overlay">
+        <div class="modal-eg ">
+            <div class="close-btn">
+                <i class="fa fa-close icono" aria-hidden="true" (click)="closeModal()"></i>
+            </div> 
+            <div>
+                <div class="modal_header">
+                    <div class="container_title">Nueva Boleta Electoral</div>
+                </div>
+                <div class="bg-white modal-container">
+                    <form class="row g-3 search_row">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="cargoInput" class="search_Label">Seleccione Cargo a elegir</label>
+                                <div class="search_input">
+                                    <select class="form-select" aria-label="Default select example" id="cargoInput">
+                                        <option selected value="">Diputacion Federal</option>
+                                        <option value="">Gubernatura</option>
+                                        <option value="">Diputacion Local</option>
+                                        <option value="">Presidencia</option>
+                                        <option value="">Alcaldia</option>
+                                        <option value="">Senaduria</option>
+                                      </select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div> 
+            </div>
+            
+            <div class="btns-cancel-next-modal">
+                <button type="button" class="btn btn-primary cancel_btn">
+                    Cancelar
+                </button>
+                <button type="button" class="btn btn-primary registrar_btn">
+                    Siguiente
+                </button>
+            </div> 
+        </div>
+    </div>
+</div>
+
+<!-- 
+<div class="container container_header">
     <div class="container_title">Nueva Boleta Electoral</div>
 </div>
 
@@ -47,4 +110,4 @@
     <button type="button" class="btn btn-primary registrar_btn">
         Registrar Boleta
     </button>
-</div>
+</div> -->
