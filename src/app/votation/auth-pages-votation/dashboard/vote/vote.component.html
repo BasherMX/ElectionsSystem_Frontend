@@ -1,27 +1,90 @@
-<p>vote works!</p>
-
-
-<h2>{{step}}</h2>
-
-
-
-
-<div *ngIf="step === 1">
-    <p>Primera Parte</p>
-    <img src="../../../../../assets/Images/warning_machine.png" alt="">
-    <i class="fa fa-bath" aria-hidden="true" style="color: red;"></i>
+<div class="step1" *ngIf="step === 1">
+    <img src="../../../../../assets/Images/Logo_Instituto_Nacional_Electoral.svg.svg" alt="">
+    <p>Bienvenid@!</p>
+    <button (click)="up()">Iniciar Votación</button>
 </div>
 
-<div *ngIf="step === 2">
-    <p>Segunda Parte</p>
-    <img src="../../../../../assets/Images/ballot_selected_icon.svg" alt="">
+<div class="step2" *ngIf="step === 2">
+    <img src="../../../../../assets/Images/Logo_Instituto_Nacional_Electoral.svg.svg" alt="">
+    <div id="content">
+        <p id="text">Escanea El QR de tu credencial para votar</p>
+        <div>
+            <video (click)="scanQR()" id="camera" #cameraFeed autoplay></video>
+            <p id="caption">Coloca el QR Dentro del recuadro</p>
+        </div>
+    </div>
 </div>
 
-<div *ngIf="step === 3">
-    <p>Tercera Parte</p>
-    <img src="../../../../../assets/Images/votation_active.png" alt="">
+<div class="step0" *ngIf="step === 0">
+    <img id="logo" src="../../../../../assets/Images/Logo_Instituto_Nacional_Electoral.svg.svg" alt="">
+    <img id="warning" src="../../../../../assets/Images/warning_machine.png" alt="">
+    <p id="atencion">ATENCIÓN</p>
+    <p id="voto-emitido">Ya haz emitido tu voto</p>
+    <p id="informacion-legal">“Se impondrá de trescientos a seiscientos días multa y prisión de cuatro a nueve años a
+        quien intente realizar más de un sufragio en votaciones de cualquier nivel; Código Federal de Instituciones y
+        Procedimientos Electorales (Cofipe). Ley General del Sistema de Medios de Impugnación en Materia Electoral
+        (LGSMIME). Ley Orgánica del Poder Judicial de la Federación (LOPJF). Código Penal Federal (CPF).”
+    </p>
+    <div id="content-progress-bar">
+        <div class="progress-bar"></div>
+        <p>{{seconds}} segundos</p>
+    </div>
+</div>
+
+<div class="step3" *ngIf="step === 3">
+    <img src="../../../../../assets/Images/Logo_Instituto_Nacional_Electoral.svg.svg" alt="">
+    <div id="content">
+        <p id="text">Por Favor, coloque su rostro dentro del circulo para validar su identidad.</p>
+        <div>
+            <video (click)="scanFace()" id="camera" #cameraFeed autoplay></video>
+            <p id="caption">Manten tu rostro dentro del circulo hasta completar el escaneo</p>
+        </div>
+    </div>
+</div>
+
+<div class="step4" *ngIf="step === 4">
+    <div id="header">
+        <img src="../../../../../assets/Images/Logo_Instituto_Nacional_Electoral.svg.svg" alt="">
+        <p>{{nombre}}</p>
+    </div>
+    <p class="title">VOTACIÓN</p>
+    <div id="boleta">
+        <p id="tipo">{{tipo}}</p>
+        <P id="estado">Estado: {{estado}}</P>
+        <div id="opciones">
+            <div id="card" *ngFor="let opc of opciones">
+                <div class="image">
+                    <img src={{opc.imageUrl}} alt="">
+                </div>
+                <div class="text">
+                    <p>{{opc.nombre}}</p>
+                    <p>{{opc.partido}}</p>
+                    <p>{{opc.coalicion}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="indicador">
+        <div *ngFor="let i of range(opcionesTotales)">
+            <span *ngIf="i+1 != stepB" class="circle"></span>
+            <span *ngIf="i+1 == stepB" class="actual"></span>
+        </div>
+    </div>
+    {{stepB}} de {{ opcionesTotales }}
+
+    <button (click)="changeOpc()">REALIZAR VOTO</button>
+</div>
+
+<div class="step3" *ngIf="step === 5">
+    <img src="../../../../../assets/Images/Logo_Instituto_Nacional_Electoral.svg.svg" alt="">
+    <div id="content">
+        <p id="text">Por Favor, coloque su rostro dentro del circulo para validar su identidad.</p>
+        <div>
+            <video (click)="scanFace()" id="camera" #cameraFeed autoplay></video>
+            <p id="caption">Manten tu rostro dentro del circulo hasta completar el escaneo</p>
+        </div>
+    </div>
 </div>
 
 
-
-<button (click)="up()">Next</button>
+<!-- <button (click)="up()">Next</button> -->
