@@ -1,0 +1,43 @@
+@import '../../../vars.less';
+
+@width: 100%;
+@height: 170px;
+
+#footer {
+    width: @width;
+    height: @height;
+    background-color: @PrimaryColor;
+
+    display: grid;
+    grid-template: 100% / 1fr 1fr 1fr;
+
+    justify-items: center;
+
+    #ine_logo {
+        align-self: center;
+    }
+
+    #copyright {
+        align-self: end;
+        text-align: center;
+        font-size: 80%;
+        color: @White;
+    }
+
+    #direcciones {
+        display: flex;
+        flex-direction: column;
+
+        width: fit-content;
+        height: fit-content;
+
+        align-self: center;
+        text-align: right;
+        font-size: 110%;
+
+        a {
+            color: @White;
+            text-decoration: dotted;
+        }
+    }
+}
