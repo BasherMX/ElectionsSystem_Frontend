@@ -8,7 +8,6 @@
     justify-content: center;
 }
 
-/* modal.component.css */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -16,9 +15,17 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+}
+
+.modal-flex-parent{
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    height: 100%;
 }
 
 .modal_header{
@@ -56,8 +63,21 @@
 
 .modal-eg {
     width: 80%;
-    height: 80%;
-    background-color: rgb(220, 220, 220); /* Blanco con 50% de opacidad */
+    // height: 80%;
+    min-height: 80%;
+    background-color: rgb(245, 245, 245); /* Blanco con 50% de opacidad */
+    padding: 1rem 2.5rem 1.1rem;
+    margin-top: 15px;
+    gap: 15px;
+    border-radius: 20px;
+    box-shadow: 0px 4px 5px rgba(0 0 0 /5%);
+}
+
+.modal-content {
+    width: 80%;
+    // height: 80%;
+    min-height: 80%;
+    background-color: rgb(245, 245, 245); /* Blanco con 50% de opacidad */
     padding: 1rem 2.5rem 1.1rem;
     margin-top: 15px;
     gap: 15px;
@@ -71,6 +91,18 @@
     align-items: flex-end;
     justify-content: flex-end;
     padding-bottom: 50px;
+    margin-top: 15px;
+    margin-bottom: 40px;
+    gap: 15px;
+    border-radius: 20px;
+}
+
+.cancel_confirm-register{
+    width: 90%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    // padding-bottom: 50px;
     margin-top: 15px;
     margin-bottom: 40px;
     gap: 15px;
@@ -102,7 +134,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 25px;
+    // margin-top: 25px;
+    padding-top: 25px;
 }
 
 .container_title{
@@ -112,12 +145,41 @@
 
 .search_row{
     width: 100%;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 
 .searchBar{
     width: 90%;
     height: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2.5rem 1.1rem;
+    margin-top: 15px;
+    gap: 15px;
+    border-radius: 20px;
+    box-shadow: 0px 4px 5px rgba(0 0 0 /5%);
+}
+
+.candidate-form{
+    width: 90%;
+    height: 60%;
+    // display: flex;
+    // align-items: center;
+    // justify-content: space-between;
+    padding: 1rem 2.5rem 1.1rem;
+    margin-top: 15px;
+    gap: 15px;
+    border-radius: 20px;
+    box-shadow: 0px 4px 5px rgba(0 0 0 /5%);
+}
+
+.add-candidate{
+    width: 90%;
+    // height: 90%;
+    min-height: 300px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -159,7 +221,7 @@
 .search_input{
     input{
         height: 100%;
-        padding-left: 2.5rem;
+        // padding-left: 2.5rem;
     }
 }
 
