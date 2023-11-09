@@ -11,8 +11,14 @@
         <div class="d-flex flex-column justify-content-center align-items-center inputs">
             <h3>Log In</h3>
 
-            <app-input label="ID" inputType="email" placeholder="Ingrese su ID" [(ngModel)]="authData.email"></app-input>
-            <app-input label="Contraseña" inputType="password" placeholder="Ingrese su Contraseña" [(ngModel)]="authData.password"></app-input>
+            <div class="form-group">
+                <label>ID</label>
+                <input type="email" class="form-control" id="customInput" placeholder="Ingrese su ID" [(ngModel)]="authData.email">
+            </div>
+            <div class="form-group">
+                <label>Contraseña</label>
+                <input type="password" class="form-control" id="customInput" placeholder="Ingrese su Contraseña" [(ngModel)]="authData.password">
+            </div>
             <app-boton texto="Iniciar Sesión" (click)="onLogin()"></app-boton>
 
             <span class="forgottPassword">
