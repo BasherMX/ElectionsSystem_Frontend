@@ -1,12 +1,15 @@
 <real_time-navbar></real_time-navbar>
+<!-- <div id="separador"></div> -->
+
 <div id="content">
     <p id="banner1">SIGUE LAS ELECCIONES <br>
-        EN VIVO!</p>
+        <span id="banner1_1">EN VIVO!</span>
+    </p>
     <p id="banner2">Selecciona Tu estado!</p>
     <div id="button_dropdown_combo">
         <div class="dropdown">
-            <button class="btn btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                {{estadoSelecc }}
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ estadoSelecc }}
             </button>
             <ul class="dropdown-menu">
                 <li (click)="getEstado(estado)" *ngFor="let estado of estados">{{ estado }}</li>
@@ -15,4 +18,3 @@
         <button type="button" class="btn btn-send">BUSCAR!</button>
     </div>
 </div>
-<!-- <real_time-footer></real_time-footer> -->
