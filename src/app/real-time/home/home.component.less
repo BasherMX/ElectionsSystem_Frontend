@@ -1,0 +1,57 @@
+@import '../../../vars.less';
+
+.margin_element {
+    margin-top: 7%;
+    margin-bottom: 3%;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    #banner1 {
+        .margin_element();
+
+        text-align: center;
+        font-weight: 800;
+        font-size: 400%;
+    }
+
+    #banner2 {
+        text-align: center;
+        font-weight: 500;
+        font-size: 30px;
+    }
+
+    #button_dropdown_combo {
+        width: 100%;
+
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        .dropdown {
+
+            .btn.btn-lg.dropdown-toggle {
+                height: 54px;
+                background-color: #F5F5F5;
+
+                text-align: center;
+                font-weight: 500;
+                font-size: 20px;
+            }
+        }
+
+        .btn.btn-send {
+            margin-left: 2%;
+            background-color: @PrimaryColor;
+            color: @White;
+            height: 54px;
+
+            text-align: center;
+            font-weight: 700;
+            font-size: 20px;
+        }
+    }
+}
