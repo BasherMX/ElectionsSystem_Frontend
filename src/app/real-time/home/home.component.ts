@@ -21,6 +21,7 @@ export class HomeComponent {
     "Guerrero",
     "Hidalgo",
     "Jalisco",
+    "Estado de México",
     "Michoacán",
     "Morelos",
     "Nayarit",
