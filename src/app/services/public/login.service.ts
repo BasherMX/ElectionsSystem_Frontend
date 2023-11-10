@@ -3,6 +3,7 @@ import { environment } from '../../../environment/environment.dev';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthRequest } from 'src/app/interfaces/authRequest.interface';
+import { Endpoints } from '../endpoints';
 
 
 @Injectable({
@@ -19,9 +20,13 @@ export class LoginService {
 
 
   //login
-  public getData (data: AuthRequest) : Observable<any>{
-    let endpoint = "/public/loginUser";
-    return this.http.post<any>(this.apiUrl + endpoint, data);
+  public loginUser (data: AuthRequest) : Observable<any>{
+    return this.http.post<any>(this.apiUrl + Endpoints.public.login, data);
+  }
+
+
+  public verifyAccount (data: string) : Observable<any>{
+    return this.http.post<any>(this.apiUrl + Endpoints.public.verifyAccount + data, data);
   }
 
 

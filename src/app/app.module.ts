@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http'
 
 
 
+
 import { LoginComponent } from './admin/pages/login/login.component';
 import { NotFoundComponent } from './commonComponents/not-found/not-found.component';
 import { DropdownComponent } from './commonComponents/dropdown/dropdown.component';
@@ -20,6 +21,9 @@ import { NavBarComponent } from './admin/adminComponents/nav-bar/nav-bar.compone
 import { AuthPagesVotationComponent } from './votation/auth-pages-votation/auth-pages-votation.component';
 import { FormsModule } from '@angular/forms';
 import { RealTimeComponent } from './real-time/real-time.component';
+import { VerifyAccountComponent } from './admin/pages/verify-account/verify-account.component';
+
+
 
 
 
@@ -38,7 +42,8 @@ import { RealTimeComponent } from './real-time/real-time.component';
     SideBarComponent,
     NavBarComponent,
     AuthPagesVotationComponent,
-    RealTimeComponent
+    RealTimeComponent,
+    VerifyAccountComponent,
   ],
   imports: [
     BrowserModule,

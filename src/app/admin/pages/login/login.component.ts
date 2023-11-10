@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoginService } from '../../../services/login/login.service';
+import { LoginService } from '../../../services/public/login.service';
 import { AuthRequest } from 'src/app/interfaces/authRequest.interface';
 
 @Component({
@@ -15,15 +15,15 @@ export class LoginComponent {
 
   onLogin(): void {
     console.log("user: " + this.authData.email + " pass: " + this.authData.password);
-    // this.loginService.getData(this.authData).subscribe(
-    //   (data) => {
-    //     // Manejo de la respuesta de la API
-    //     console.log('Response from login service:', data);
-    //   },
-    //   (error) => {
-    //     console.error('Error from login service:', error);
-    //     // Manejo de errores
-    //   }
-    // );
+    this.loginService.loginUser(this.authData).subscribe(
+      (data) => {
+        // Manejo de la respuesta de la API
+        console.log('Response from login service:', data);
+      },
+      (error) => {
+        alert('ERROR:  ' + error.error.error);
+        // Manejo de errores
+      }
+    );
   }
 }

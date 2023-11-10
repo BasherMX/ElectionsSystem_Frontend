@@ -13,11 +13,11 @@
 
             <div class="form-group">
                 <label>ID</label>
-                <input type="email" class="form-control" id="customInput" placeholder="Ingrese su ID" [(ngModel)]="authData.email">
+                <input type="email" class="form-control" id="emailInput" placeholder="Ingrese su ID" [(ngModel)]="authData.email">
             </div>
             <div class="form-group">
                 <label>Contraseña</label>
-                <input type="password" class="form-control" id="customInput" placeholder="Ingrese su Contraseña" [(ngModel)]="authData.password">
+                <input type="password" class="form-control" id="passwordInput" placeholder="Ingrese su Contraseña" [(ngModel)]="authData.password">
             </div>
             <app-boton texto="Iniciar Sesión" (click)="onLogin()"></app-boton>
 
