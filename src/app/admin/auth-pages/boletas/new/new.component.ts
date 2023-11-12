@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new',
@@ -10,6 +11,11 @@ export class NewComponent {
   modalStep = 0;
   isRegistered = false;
 
+  constructor(private router: Router){}
+
+  redirigir(){
+    this.router.navigate(['admin/candidates/new']);
+  }
 
   openModal(){
     this.showModal = true;
