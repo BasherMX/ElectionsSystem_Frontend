@@ -1,0 +1,50 @@
+<div class="container container_header">
+    <div class="container_title">Nueva Boleta Electoral</div>
+</div>
+
+<div class="container bg-white searchBar">
+	<form class="row g-3 search_row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for="ejercicioInput" class="search_Label">Seleccione el ejercicio Electoral</label>
+                <div class="search_input">
+                    <input type="text" class="form-control" id="ejercicioInput" placeholder="AGS0032ACB12" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 end_col">
+			<button type="button" class="btn btn-primary Search_btn">
+				Seleccionar
+			</button>
+        </div>
+      </form>
+</div>
+
+<div class="container bg-white searchBar">
+	<form class="row g-3 search_row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for="cargoInput" class="search_Label">Seleccione Cargo a elegir</label>
+                <div class="search_input">
+					<select class="form-select" aria-label="Default select example" id="cargoInput">
+						<option selected value="">Diputacion Federal</option>
+						<option value="">Gubernatura</option>
+						<option value="">Diputacion Local</option>
+						<option value="">Presidencia</option>
+						<option value="">Alcaldia</option>
+						<option value="">Senaduria</option>
+					  </select>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="container cancel_confirm">
+    <button type="button" class="btn btn-primary cancel_btn">
+        Cancelar
+    </button>
+    <button type="button" class="btn btn-primary registrar_btn">
+        Registrar Boleta
+    </button>
+</div>

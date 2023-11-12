@@ -1,0 +1,187 @@
+<div class="container container_header">
+    <div class="container_title">Nuevo Elector</div>
+</div>
+
+<!-- <div class="container bg-white searchBar">
+	<div class="row g-3 ">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for="boletaInput" class="search_Label">Seleccione la Boleta Electoral</label>
+                <div class="search_input">
+                    <input type="text" class="form-control" id="boletaInput" placeholder="AGS0032ACB12" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 end_col">
+			<button type="button" class="btn btn-primary Search_btn">
+				Seleccionar
+			</button>
+        </div>
+	</div>
+</div> -->
+
+<div class="container bg-white searchBar">
+	<div class="row g-3 search_row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="nombreInput" class="search_Label">Nombre(s)</label>
+				<div class="search_input">
+					<input type="text" class="form-control" id="nombreInput" placeholder="Ingrese el Nombre">
+				</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="apepatInput" class="search_Label">Apellido Paterno</label>
+				<div class="search_input">
+					<input type="text" class="form-control" id="apepatInput" placeholder="Ingrese el Apellido Paterno">
+				</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="apematInput" class="search_Label">Apellido Materno</label>
+				<div class="search_input">
+					<input type="text" class="form-control" id="apematInput" placeholder="Ingrese el Apellido Materno">
+				</div>
+            </div>
+        </div>
+    </div>
+	<div class="row g-3 search_row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for="fechaInput" class="search_Label">Fecha de Nacimiento</label>
+				<div class="search_input">
+					<input type="date" class="form-control" id="fechaInput">
+				</div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label for="sexoInput" class="search_Label">Sexo</label>
+                <div class="search_input">
+					<select class="form-select" aria-label="Default select example" id="sexoInput">
+						<option value="" selected>Mujer</option>
+						<option value="">Hombre</option>
+					  </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row g-3 search_row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="calleInput" class="search_Label">Calle</label>
+                <div class="search_input">
+                    <input type="text" class="form-control" id="calleInput" placeholder="Ingrese la Calle">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="coloniaInput" class="search_Label">Colonia</label>
+                <div class="search_input">
+                    <input type="text" class="form-control" id="coloniaInput" placeholder="Ingrese la Colonia">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label for="nExteriorInput" class="search_Label">No. Exterior</label>
+                <div class="search_input">
+                    <input type="number" class="form-control" id="nExteriorInput" placeholder="No. exterior">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label for="nInteriorInput" class="search_Label">No. Interior</label>
+                <div class="search_input">
+                    <input type="number" class="form-control" id="nInteriorInput" placeholder="No. interior">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row g-3 search_row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="cPostalInput" class="search_Label">Codigo Postal</label>
+				<div class="search_input">
+					<input type="number" class="form-control" id="cPostalInput" placeholder="Ingresa CP">
+				</div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for="sexoInput" class="search_Label">Sexo</label>
+                <div class="search_input">
+					<select class="form-select" aria-label="Default select example" id="sexoInput">
+						<option value="" selected>Aguascalientes</option>
+						<option value="">Colima</option>
+						<option value="">Zacatecas</option>
+						<option value="">CDMX</option>
+					  </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container bg-white searchBar webcam_container">
+    <div class="row g-3">
+        <div class="col-md-4">
+            <div class="search_Label">Tomar Fotografía</div>
+            <img src="assets/Images/scan_face_icon2.svg" alt="" (click)="openModal()">
+        </div>
+        <div class="col-md-4">
+            <div class="search_Label">Fotografía Elector</div>
+            <div *ngIf="webcamImage?.imageAsDataUrl != null">
+                <img [src]="webcamImage.imageAsDataUrl" width="200px" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container cancel_confirm">
+    <button type="button" class="btn btn-primary cancel_btn">
+        Cancelar
+    </button>
+    <button type="button" class="btn btn-primary registrar_btn">
+        Registrar Usuario
+    </button>
+</div>
+
+<div *ngIf="showModal">
+    <div class="modal-overlay">
+        <div class="modal-flex-parent">
+            <div class="modal-eg">
+                <div class="row g-3">
+                    <div class="col-md-10 text-center modal_title">
+                        Toma de Fotografía
+                    </div>
+                    <div class="col-md-2">
+                        <div class="close-btn">
+                            <i class="fa fa-close icono" aria-hidden="true" (click)="closeModal()"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-3">
+                    <div class="col-md-12 webcam_area">
+                        <webcam
+                            [trigger]="invokeObservable" (imageCapture)="captureImg($event)">
+                        </webcam>
+                    </div>
+                </div>
+                <div class="container cancel_confirm-register">
+                    <button type="button" class="btn btn-primary cancel_btn" (click)="closeModal()">
+                        Cancelar
+                    </button>
+                    <button type="button" class="btn btn-primary registrar_btn" (click)="getSnapshot()">
+                        Tomar Fotografía
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

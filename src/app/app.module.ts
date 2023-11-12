@@ -20,10 +20,9 @@ import { SideBarComponent } from './admin/adminComponents/side-bar/side-bar.comp
 import { NavBarComponent } from './admin/adminComponents/nav-bar/nav-bar.component';
 import { AuthPagesVotationComponent } from './votation/auth-pages-votation/auth-pages-votation.component';
 import { FormsModule } from '@angular/forms';
+import { WebcamModule } from 'ngx-webcam';
 import { RealTimeComponent } from './real-time/real-time.component';
 import { VerifyAccountComponent } from './admin/pages/verify-account/verify-account.component';
-
-
 
 
 
@@ -50,6 +49,7 @@ import { VerifyAccountComponent } from './admin/pages/verify-account/verify-acco
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    WebcamModule,
     HttpClientModule
   ],
   exports:      [ 

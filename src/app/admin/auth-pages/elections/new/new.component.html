@@ -1,0 +1,45 @@
+<div class="container container_header">
+    <div class="container_title">Nuevo Ejercicio Electoral</div>
+</div>
+
+<div class="container bg-white rounded_borders">
+    <div class="row g-3 align-items-start">
+		<div class="col-md-6">
+			<label for="eleccionInput" class="new_input">Seleccione el Tipo de Eleccion</label>
+			<div>
+                <select class="form-select" aria-label="Default select example" id="eleccionInput">
+                    <option value="" selected>Extraordinaria</option>
+                    <option value="">Ordinaria</option>
+                </select>
+			</div>
+		</div>
+    </div>
+    <div class="row g-3">
+		<div class="col-md-6">
+			<label for="estadoInput" class="new_input">Seleccione el Estado</label>
+			<div>
+                <select class="form-select" aria-label="Default select example" id="estadoInput">
+                    <option value="Aguascalientes" selected>Aguascalientes</option>
+                    <option value="">Baja California</option>
+                    <option value="">Baja California Sur</option>
+                    <option value="">Campeche</option>
+                </select>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<label for="estadoInput" class="new_input">Fecha del Ejercicio</label>
+			<div class="search_input">
+				<input type="date" class="form-control" id="dateInput">
+			</div>
+		</div>
+    </div>
+</div>
+
+<div class="container cancel_confirm">
+    <button type="button" class="btn btn-primary cancel_btn">
+        Cancelar
+    </button>
+    <button type="button" class="btn btn-primary registrar_btn" (click)="guardar()">
+        Registrar Ejercicio
+    </button>
+</div>

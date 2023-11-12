@@ -1,0 +1,87 @@
+<div class="container container_header">
+    <div class="container_title">Ejercicios Electorales</div>
+    <button type="button" class="btn btn-primary" (click)="redirigir()" style="width: max-content; padding: .5rem 2rem; font-size: 1.3rem;">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+        Nuevo
+    </button>
+</div>
+
+<div class="container bg-white searchBar">
+    <form class="row g-3 search_row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="idInput" class="search_Label">Buscar por ID</label>
+                <div class="search_input">
+                    <i class="fa fa-search"></i>
+                    <input type="text" class="form-control" id="idInput" [(ngModel)]="searchText" placeholder="Ingresar ID">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="estadoInput" class="search_Label">Estado</label>
+                <select class="form-select" aria-label="Default select example" id="estadoInput">
+                    <option value="Aguascalientes" selected>Aguascalientes</option>
+                    <option value="">Baja California</option>
+                    <option value="">Baja California Sur</option>
+                    <option value="">Campeche</option>
+                  </select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="estatusInput" class="search_Label">Estatus</label>
+                <select class="form-select" aria-label="Default select example" id="estatusInput">
+                    <option selected value="activo">En Proceso</option>
+                    <option value="inactivo">Finalizada</option>
+                  </select>
+            </div>
+        </div>
+        <div class="col-md-2 end_col">
+                <button type="button" class="btn btn-primary Search_btn">
+                    Buscar
+                </button>
+        </div>
+      </form>
+</div>
+
+<div class="table_index container">
+    <table class="table">
+        <thead>
+          <tr>
+            <th style="padding-left: 2.5rem;">ID</th>
+            <th>Estado</th>
+            <th>Fecha</th>
+            <th>Estatus</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of datos | paginate: { itemsPerPage: itemsPerPage, currentPage: page }">
+            <td style="padding-left: 2.5rem;">{{ item.id }}</td>
+            <td>{{ item.estado }}</td>
+            <td>{{ item.fecha }}</td>
+            <td>{{ item.status }}</td>
+            <td class="ActionsRow">
+              <a href="#" (click)="editarItem(item)">
+                <i class="fa fa-pencil"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <div style="text-align: center;">
+        <pagination-controls 
+        class="my-pagination"
+        (pageChange)="page = $event"
+        previousLabel=""
+        nextLabel=""
+        >
+    </pagination-controls>
+      </div>
+
+
+</div>
+  
+  
