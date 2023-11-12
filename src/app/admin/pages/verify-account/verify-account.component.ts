@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoginService } from 'src/app/services/public/login.service';
+import { LoginService } from 'src/app/services/publicRoutes/login.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -8,8 +8,11 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./verify-account.component.less']
 })
 export class VerifyAccountComponent {
-
+  verified = false;
+  spinner = true;
   code = "";
+  text = "VERIFICANDO CUENTA";
+
   constructor (
     private VerifyService: LoginService,
     private route: ActivatedRoute,
@@ -22,29 +25,26 @@ export class VerifyAccountComponent {
   }
 
 
-  onVerify(): void {
+  onVerify(): void { 
     // Agrega un retraso de 5 segundos antes de realizar la petición
     setTimeout(() => {
       this.VerifyService.verifyAccount(this.code).subscribe(
         (data) => {
-          // Manejo de la respuesta de la API
-          console.log('VERIFICADA, CAMBIA A LOGIN:', data);
-          this.redirectToAdminLogin();
+          this.verified = true;
+          this.spinner = false;
+          this.text = data.message;
         },
         (error) => {
-          alert('ERROR: ' + error.error.error);
-          this.redirectToAdminLogin();
-          // Manejo de errores
+          this.spinner = false;
+          this.text = error.error.error;
         }
       );
-    }, 3000);
+    }, 1500);
   }
   
   redirectToAdminLogin(): void {
-    // Utiliza el servicio Router para navegar después del retraso
-    setTimeout(() => {
+    
       this.changeRoute.navigate(['/admin/login']);
-    }, 3000);
   }
   
 
