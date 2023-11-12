@@ -13,9 +13,6 @@ export class LoginService {
 
   private  apiUrl = environment.apiUrl;
 
-
-
-
   constructor(private http: HttpClient) { }
 
 
@@ -26,7 +23,7 @@ export class LoginService {
 
 
   public verifyAccount (data: string) : Observable<any>{
-    return this.http.post<any>(this.apiUrl + Endpoints.public.verifyAccount + data, data);
+    return this.http.post<any>(this.apiUrl + Endpoints.public.verifyAccount(data), data);
   }
 
 
