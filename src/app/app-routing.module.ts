@@ -40,11 +40,11 @@ const routes: Routes = [
   { 
     path: 'votation',
     loadChildren: () => import('./votation/auth-pages-votation/auth-votation.module').then(m => m.AuthVotationModule),
+  }, 
+  { 
+    path: 'realTime',
+    loadChildren: () => import('./real-time/real-time.module').then(m => m.RealTimeModule),
   },
-  // { 
-  //   path: 'realTime',
-  //   loadChildren: () => import('./admin/pages/login/login.module').then(m => m.LoginModule),
-  // },
   {
     path: '**',
     component: NotFoundComponent
