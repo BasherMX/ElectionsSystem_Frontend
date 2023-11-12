@@ -34,6 +34,10 @@ const routes: Routes = [
     loadChildren: () => import('./admin/auth-pages/elections/elections.module').then(m => m.ElectionsModule),
   },
   { 
+    path: 'admin/electors',
+    loadChildren: () => import('./admin/auth-pages/electors/electors.module').then(m => m.ElectorsModule),
+  },
+  { 
     path: 'votation',
     loadChildren: () => import('./votation/auth-pages-votation/auth-votation.module').then(m => m.AuthVotationModule),
   },

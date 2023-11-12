@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 import { ControlComponent } from './control/control.component';
 import { NewComponent } from './new/new.component';
 import { EditComponent } from './edit/edit.component';
-import { Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { FormsModule } from '@angular/forms';
 
 const rts: Routes = [
   { path: '', redirectTo: 'control', pathMatch: 'full'},
@@ -19,7 +21,10 @@ const rts: Routes = [
     EditComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    NgxPaginationModule,
+    FormsModule,
+    RouterModule.forChild(rts)
   ]
 })
 export class ElectorsModule { }
