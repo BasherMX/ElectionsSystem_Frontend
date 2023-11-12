@@ -6,6 +6,7 @@ import { EditComponent } from './edit/edit.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
+import { WebcamModule } from 'ngx-webcam';
 
 const rts: Routes = [
   { path: '', redirectTo: 'control', pathMatch: 'full'},
@@ -24,7 +25,8 @@ const rts: Routes = [
     CommonModule,
     NgxPaginationModule,
     FormsModule,
-    RouterModule.forChild(rts)
+    RouterModule.forChild(rts),
+    WebcamModule
   ]
 })
 export class ElectorsModule { }
