@@ -15,7 +15,8 @@
         
                 <div class="search_input">
                     <i class="fa fa-search"></i>
-                    <input type="text" class="form-control" id="idInput" [(ngModel)]="searchText" placeholder="Ingresa ID o Nombre">
+                    <input type="text" class="form-control" id="idInput" name="searchText" [(ngModel)]="searchText" placeholder="Ingresa ID o Nombre" 
+                    (ngModelChange)="buscarNombreId()">
         
                 </div>
             </div>
@@ -23,16 +24,14 @@
         <div class="col-md-5">
             <div class="form-group">
                 <label for="estadoInput" class="search_Label">Estado</label>
-                <select class="form-select" aria-label="Default select example" id="estadoInput">
-                    <option value="Aguascalientes" selected>Aguascalientes</option>
-                    <option value="">Baja California</option>
-                    <option value="">Baja California Sur</option>
-                    <option value="">Campeche</option>
+                <select class="form-select" aria-label="Default select example" id="estadoInput" name="estadoInput" [(ngModel)]="stateId">
+                    <option [value]="0" >Todos</option>
+                    <option *ngFor="let state of stateList" [value]="state.state_id" >{{state.name}}</option>
                   </select>
             </div>
         </div>
         <div class="col-md-2 end_col">
-                <button type="button" class="btn btn-primary Search_btn">
+                <button type="button" class="btn btn-primary Search_btn" (click)="filtrarPorDrops()">
                     Buscar
                 </button>
         </div>
@@ -44,24 +43,22 @@
     <table class="table">
         <thead>
           <tr>
-            <th style="padding-left: 2.5rem;">ID</th>
+            <th style="padding-left: 2.5rem;">Clave</th>
             <th>Nombre</th>
-            <th>Clave</th>
             <th>Estado</th>
             <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let item of datos | paginate: { itemsPerPage: itemsPerPage, currentPage: page }">
-            <td style="padding-left: 2.5rem;">{{ item.id }}</td>
-            <td>{{ item.nombre }}</td>
-            <td>{{ item.clave }}</td>
-            <td>{{ item.estado }}</td>
+            <td style="padding-left: 2.5rem;">{{ item.elector_id }}</td>
+            <td>{{ item.name + " " + item.first_lastname + " " + item.second_lastname }}</td>
+            <td>{{ getStateName(item.state_id) }}</td>
             <td class="ActionsRow">
-              <a href="#" (click)="editarItem(item)">
+              <a (click)="editarItem(item)">
                 <i class="fa fa-pencil"></i>
               </a>
-              <a href="#" (click)="borrarItem(item)">
+              <a (click)="borrarItem(item)">
                 <i class="fa fa-trash"></i>
               </a>
             </td>

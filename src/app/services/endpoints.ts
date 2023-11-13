@@ -23,6 +23,7 @@ export const Endpoints = {
   },
   realTime: {
     getBallotsByExerciseId: '/realTime/getBallotsByExerciseId',
+    getAllStates: '/realTime/getAllStates',
   },
   politicalParty: {
     getAllEnable: '/politicalParty/getAllEnable',

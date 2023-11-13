@@ -25,8 +25,8 @@ export const routes: Routes = [
         loadChildren: () => import('../auth-pages/users/users.module').then(m => m.UsersModule),
       },
       { 
-        path: 'users',
-        loadChildren: () => import('../auth-pages/users/users.module').then(m => m.UsersModule),
+        path: 'electors',
+        loadChildren: () => import('../auth-pages/electors/electors.module').then(m => m.ElectorsModule),
       },
     ]
   }

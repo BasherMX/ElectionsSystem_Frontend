@@ -23,4 +23,9 @@ export class RealTimeService {
     const url = this.apiUrl + this.endpoints.getBallotsByExerciseId;
     return this.http.get(url, { headers: this.getHeaders() });
   }
+
+  getAllStates(): Observable<any> {
+    const url = this.apiUrl + this.endpoints.getAllStates;
+    return this.http.get(url, { headers: this.getHeaders() });
+  }
 }

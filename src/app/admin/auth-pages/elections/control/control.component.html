@@ -13,32 +13,31 @@
                 <label for="idInput" class="search_Label">Buscar por ID</label>
                 <div class="search_input">
                     <i class="fa fa-search"></i>
-                    <input type="text" class="form-control" id="idInput" [(ngModel)]="searchText" placeholder="Ingresar ID">
+                    <input type="text" class="form-control" id="idInput" name="searchText" [(ngModel)]="searchText" placeholder="Ingresa ID o Fecha (yyyy-mm-dd)" 
+                    (ngModelChange)="buscarNombreFecha()">
                 </div>
             </div>
         </div>
         <div class="col-md-3">
             <div class="form-group">
                 <label for="estadoInput" class="search_Label">Estado</label>
-                <select class="form-select" aria-label="Default select example" id="estadoInput">
-                    <option value="Aguascalientes" selected>Aguascalientes</option>
-                    <option value="">Baja California</option>
-                    <option value="">Baja California Sur</option>
-                    <option value="">Campeche</option>
-                  </select>
+                <select class="form-select" aria-label="Default select example" id="estadoInput" name="estadoInput" [(ngModel)]="stateId">
+                  <option [value]="0" >Todos</option>
+                  <option *ngFor="let state of stateList" [value]="state.state_id" >{{state.name}}</option>
+                </select>
             </div>
         </div>
         <div class="col-md-3">
             <div class="form-group">
                 <label for="estatusInput" class="search_Label">Estatus</label>
-                <select class="form-select" aria-label="Default select example" id="estatusInput">
-                    <option selected value="activo">En Proceso</option>
-                    <option value="inactivo">Finalizada</option>
+                <select class="form-select" aria-label="Default select example" id="estatusInput"  name="statusInput" [(ngModel)]="statusInput">
+                    <option [value]="0">En Proceso</option>
+                    <option [value]="1">Finalizada</option>
                   </select>
             </div>
         </div>
         <div class="col-md-2 end_col">
-                <button type="button" class="btn btn-primary Search_btn">
+                <button type="button" class="btn btn-primary Search_btn" (click)="filtrarPorDrops()">
                     Buscar
                 </button>
         </div>
@@ -58,10 +57,11 @@
         </thead>
         <tbody>
           <tr *ngFor="let item of datos | paginate: { itemsPerPage: itemsPerPage, currentPage: page }">
-            <td style="padding-left: 2.5rem;">{{ item.id }}</td>
-            <td>{{ item.estado }}</td>
-            <td>{{ item.fecha }}</td>
-            <td>{{ item.status }}</td>
+            <td style="padding-left: 2.5rem;">{{ item.exercise_id }}</td>
+            <td>{{ getStateName(item.state_id) }}</td>
+            <td>{{ item.date | date: 'dd-MM-yyyy' }}</td>
+            <td *ngIf="!item.status">En Proceso</td>
+            <td *ngIf="item.status">Finalizada</td>
             <td class="ActionsRow">
               <a href="#" (click)="editarItem(item)">
                 <i class="fa fa-pencil"></i>
@@ -69,6 +69,7 @@
             </td>
           </tr>
         </tbody>
+        
       </table>
       
       <div style="text-align: center;">

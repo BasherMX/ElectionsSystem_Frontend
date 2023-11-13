@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { UsersService } from 'src/app/services/users/users.service';
 
 @Component({
   selector: 'app-control',
@@ -6,29 +8,89 @@ import { Component } from '@angular/core';
   styleUrls: ['./control.component.less']
 })
 export class ControlComponent {
-  datos = [
-    { id: 0, nombre: 'Usuario 1', tipo: 'Verificador', status: "Inactivo"},
-    { id: 1, nombre: 'Usuario 2', tipo: 'Admin SR', status: "Activo" },
-    { id: 2, nombre: 'Usuario 3', tipo: 'Admin JR', status: "Activo" },
-    { id: 3, nombre: 'Usuario 4', tipo: 'Admin SR', status: "Activo" },
-    { id: 4, nombre: 'Usuario 5', tipo: 'Admin JR', status: "Inactivo" },
-    { id: 5, nombre: 'Usuario 6', tipo: 'Admin JR', status: "Activo" },
-    { id: 6, nombre: 'Usuario 7', tipo: 'Verificador', status: "Activo" },
-    { id: 7, nombre: 'Usuario 8', tipo: 'Admin JR', status: "Activo" },
-  ];
+  originalData: any;  // Store the original data
+  datos: any;
   page = 1;
-  itemsPerPage = 6; // Cambia este valor según tus necesidades
+  itemsPerPage = 6;
   searchText: string = '';
 
+  tipoUser = 0;
+  statusInput = 1;
+
+  constructor(private router: Router, private apiService: UsersService) {
+    this.getUsersData();
+  }
+
+  getUsersData() {
+    this.apiService.getAllEnableUsers().subscribe(
+      (res) => {
+        this.originalData = res;
+        this.datos = [...this.originalData]; // Make a copy of the original data
+      },
+      (err) => {
+        alert('ERROR: ' + err.error.error);
+      }
+    );
+  }
+
+  filtrarPorDrops() {
+    if (this.tipoUser == 0) {
+      this.datos = [...this.originalData]; // Reset to the original data
+    }
+
+    if (this.tipoUser == 1) {
+      this.datos = this.originalData.filter((item: { user_type: { toString: () => string | string[]; }; name: string; }) =>
+        item.user_type.toString().includes("1")
+      );
+    }
+
+    if (this.tipoUser == 2) {
+      this.datos = this.originalData.filter((item: { user_type: { toString: () => string | string[]; }; name: string; }) =>
+        item.user_type.toString().includes("2")
+      );
+    }
+
+    if (this.statusInput == 1) {
+      this.datos = this.datos.filter((item: { enable: { toString: () => string | string[]; }; name: string; }) =>
+        item.enable.toString().includes("1")
+      );
+    }
+
+    if (this.statusInput == 0) {
+      this.datos = this.datos.filter((item: { enable: { toString: () => string | string[]; }; name: string; }) =>
+        item.enable.toString().includes("0")
+      );
+    }
+  }
+
+
+  buscarNombreId() {
+    if (this.searchText.trim() !== '') {
+      const searchTextLower = this.searchText.toLowerCase();
+      this.datos = this.datos.filter((item: { user_id: string | string[]; name: string; first_lastname: string; second_lastname: string; }) => {
+        const userIDs = Array.isArray(item.user_id) ? item.user_id : [item.user_id];
+        return userIDs.some(id => id.toString().toLowerCase().includes(searchTextLower)) ||
+               item.name.toLowerCase().includes(searchTextLower) ||
+               item.first_lastname.toLowerCase().includes(searchTextLower) ||
+               item.second_lastname.toLowerCase().includes(searchTextLower);
+      });
+    } else {
+      this.getUsersData();
+    }
+  }
+  
+  
   
 
   editarItem(item: any) {
-    // Lógica para editar el elemento
     console.log('Editar', item);
   }
 
   borrarItem(item: any) {
-    // Lógica para borrar el elemento
     console.log('Borrar', item);
+  }
+
+  goToNew() {
+    this.router.navigate(["admin/auth/users/new"]);
   }
 }
