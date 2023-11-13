@@ -6,6 +6,7 @@ import { ElectionsListComponent } from './elections-list/elections-list.componen
 import { ResultsComponent } from './results/results.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { NgxChartsModule } from "@swimlane/ngx-charts";
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -26,6 +27,7 @@ export const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    NgxChartsModule
   ]
 })
 export class RealTimeModule { }
