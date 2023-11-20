@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login.component';
 import { FormsModule } from '@angular/forms';
 import { VerifyAccountComponent } from '../verify-account/verify-account.component';
+import { AuthGGuard } from 'src/app/services/auth/auth-g.guard';
 
 const rts: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -12,7 +13,7 @@ const rts: Routes = [
   { 
     path: 'auth',
     loadChildren: () => import('../../auth-pages/auth-pages.module').then(m => m.AuthPagesModule),
-    // canActivate: [AuthGuard] // add the guard to the canActivate property
+    canActivate: [AuthGGuard]
   },
 ];
 

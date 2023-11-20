@@ -4,48 +4,47 @@
 
 <div class="container bg-white rounded_borders">
     <div class="row g-3 align-items-start">
-		<div class="col-md-4">
-				<div class="form-group">
-					<label for="nameInput" class="new_input">Nombre(s)</label>
-					<div class="search_input">
-						<input type="text" class="form-control" id="nameInput" placeholder="Ingrese el nombre">
-					</div>
-				</div>
-		</div>
-		<div class="col-md-4">
-				<div class="form-group">
-					<label for="apellidoPatInput" class="new_input">Apellido Paterno</label>
-					<div class="search_input">
-						<input type="text" class="form-control" id="apellidoPatInput" placeholder="Ingresa el Apellido Paterno">
-					</div>
-				</div>
-		</div>
-		<div class="col-md-4">
-				<div class="form-group">
-					<label for="apellidoMatInput" class="new_input">Apellido Materno</label>
-					<div class="search_input">
-						<input type="text" class="form-control" id="apellidoMatInput" placeholder="Ingresa el Apellido Materno">
-					</div>
-				</div>
-		</div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="nameInput" class="new_input">Nombre(s)</label>
+                <div class="search_input">
+                    <input type="text" class="form-control" id="nameInput" placeholder="Ingrese el nombre" [(ngModel)]="nombre">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="apellidoPatInput" class="new_input">Apellido Paterno</label>
+                <div class="search_input">
+                    <input type="text" class="form-control" id="apellidoPatInput" placeholder="Ingresa el Apellido Paterno" [(ngModel)]="apellidoPaterno">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="apellidoMatInput" class="new_input">Apellido Materno</label>
+                <div class="search_input">
+                    <input type="text" class="form-control" id="apellidoMatInput" placeholder="Ingresa el Apellido Materno" [(ngModel)]="apellidoMaterno">
+                </div>
+            </div>
+        </div>
     </div>
     <div class="row g-3">
-		<div class="col-md-5">
-			<label for="adminInput" class="new_input">Seleccione el tipo de administrador</label>
-			<div>
-                <select class="form-select" aria-label="Default select example" id="adminInput">
-                    <option selected value="admin_sr">Admin SR</option>
-                    <option value="admin_jr">Admin JR</option>
-                    <option value="verificador">Verificador</option>
-                  </select>
-			</div>
-		</div>
-		<div class="col-md-7">
-				<label for="emailInput" class="new_input">Correo Electrónico</label>
-				<div>
-					<input type="email" class="form-control" id="emailInput" placeholder="Ingresa el Correo electrónico">
-				</div>
-		</div>
+        <div class="col-md-5">
+            <label for="adminInput" class="new_input">Seleccione el tipo de administrador</label>
+            <div>
+                <select class="form-select" aria-label="Default select example" id="adminInput" [(ngModel)]="tipoAdministrador">
+                    <option value="1">Administrador SR</option>
+                    <option value="2">Administrador JR</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <label for="emailInput" class="new_input">Correo Electrónico</label>
+            <div>
+                <input type="email" class="form-control" id="emailInput" placeholder="Ingresa el Correo electrónico" [(ngModel)]="correoElectronico">
+            </div>
+        </div>
     </div>
 </div>
 
@@ -53,7 +52,8 @@
     <button type="button" class="btn btn-primary cancel_btn">
         Cancelar
     </button>
-    <button type="button" class="btn btn-primary registrar_btn">
+    <!-- Agrega el evento click que llama a la función registrarUsuario() al hacer clic en el botón -->
+    <button type="button" class="btn btn-primary registrar_btn" (click)="registrarUsuario()">
         Registrar Usuario
     </button>
 </div>

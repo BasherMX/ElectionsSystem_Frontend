@@ -28,6 +28,11 @@ export const routes: Routes = [
         path: 'electors',
         loadChildren: () => import('../auth-pages/electors/electors.module').then(m => m.ElectorsModule),
       },
+      { 
+        path: 'votation',
+        loadChildren: () => import('../auth-pages/votation/votation-admin.module').then(m => m.VotationAdminModule),
+        
+      },
     ]
   }
 ];

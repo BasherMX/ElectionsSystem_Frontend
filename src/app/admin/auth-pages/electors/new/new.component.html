@@ -1,79 +1,73 @@
 <div class="container container_header">
     <div class="container_title">Nuevo Elector</div>
-</div>
-
-<!-- <div class="container bg-white searchBar">
-	<div class="row g-3 ">
-        <div class="col-md-5">
-            <div class="form-group">
-                <label for="boletaInput" class="search_Label">Seleccione la Boleta Electoral</label>
-                <div class="search_input">
-                    <input type="text" class="form-control" id="boletaInput" placeholder="AGS0032ACB12" disabled>
-                </div>
-            </div>
+  </div>
+  
+  <div class="container bg-white searchBar">
+    <div class="row g-3 search_row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="nombreInput" class="search_Label">Nombre(s)</label>
+          <div class="search_input">
+            <input type="text" class="form-control" id="nombreInput" placeholder="Ingrese el Nombre" [(ngModel)]="nombre">
+          </div>
         </div>
-        <div class="col-md-2 end_col">
-			<button type="button" class="btn btn-primary Search_btn">
-				Seleccionar
-			</button>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="apepatInput" class="search_Label">Apellido Paterno</label>
+          <div class="search_input">
+            <input type="text" class="form-control" id="apepatInput" placeholder="Ingrese el Apellido Paterno" [(ngModel)]="apepat">
+          </div>
         </div>
-	</div>
-</div> -->
-
-<div class="container bg-white searchBar">
-	<div class="row g-3 search_row">
-        <div class="col-md-4">
-            <div class="form-group">
-                <label for="nombreInput" class="search_Label">Nombre(s)</label>
-				<div class="search_input">
-					<input type="text" class="form-control" id="nombreInput" placeholder="Ingrese el Nombre">
-				</div>
-            </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="apematInput" class="search_Label">Apellido Materno</label>
+          <div class="search_input">
+            <input type="text" class="form-control" id="apematInput" placeholder="Ingrese el Apellido Materno" [(ngModel)]="apemat">
+          </div>
         </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label for="apepatInput" class="search_Label">Apellido Paterno</label>
-				<div class="search_input">
-					<input type="text" class="form-control" id="apepatInput" placeholder="Ingrese el Apellido Paterno">
-				</div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label for="apematInput" class="search_Label">Apellido Materno</label>
-				<div class="search_input">
-					<input type="text" class="form-control" id="apematInput" placeholder="Ingrese el Apellido Materno">
-				</div>
-            </div>
-        </div>
+      </div>
     </div>
-	<div class="row g-3 search_row">
-        <div class="col-md-5">
-            <div class="form-group">
-                <label for="fechaInput" class="search_Label">Fecha de Nacimiento</label>
-				<div class="search_input">
-					<input type="date" class="form-control" id="fechaInput">
-				</div>
+    
+    <div class="row g-3 search_row">
+      <div class="col-md-5">
+        <div class="form-group">
+          <label for="fechaInput" class="search_Label">Fecha de Nacimiento</label>
+          <div class="search_input">
+            <input type="date" class="form-control" id="fechaInput" [(ngModel)]="fecha">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <label for="sexoInput" class="search_Label">Sexo</label>
+          <div class="search_input">
+            <select class="form-select" aria-label="Default select example" id="sexoInput" [(ngModel)]="sexo">
+              <option value="" selected>Seleccionar</option>
+              <option value="F">Mujer</option>
+              <option value="M">Hombre</option>
+              <option value="B">No binarie</option>
+              <option value="O">Otro</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+            <label for="calleInput" class="search_Label">Email</label>
+            <div class="search_input">
+                <input type="email" class="form-control" id="emailInput" placeholder="Ingrese el email" [(ngModel)]="email">
             </div>
         </div>
-        <div class="col-md-2">
-            <div class="form-group">
-                <label for="sexoInput" class="search_Label">Sexo</label>
-                <div class="search_input">
-					<select class="form-select" aria-label="Default select example" id="sexoInput">
-						<option value="" selected>Mujer</option>
-						<option value="">Hombre</option>
-					  </select>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
     <div class="row g-3 search_row">
         <div class="col-md-4">
             <div class="form-group">
                 <label for="calleInput" class="search_Label">Calle</label>
                 <div class="search_input">
-                    <input type="text" class="form-control" id="calleInput" placeholder="Ingrese la Calle">
+                    <input type="text" class="form-control" id="calleInput" placeholder="Ingrese la Calle" [(ngModel)]="calle">
                 </div>
             </div>
         </div>
@@ -81,7 +75,7 @@
             <div class="form-group">
                 <label for="coloniaInput" class="search_Label">Colonia</label>
                 <div class="search_input">
-                    <input type="text" class="form-control" id="coloniaInput" placeholder="Ingrese la Colonia">
+                    <input type="text" class="form-control" id="coloniaInput" placeholder="Ingrese la Colonia" [(ngModel)]="colonia">
                 </div>
             </div>
         </div>
@@ -89,7 +83,7 @@
             <div class="form-group">
                 <label for="nExteriorInput" class="search_Label">No. Exterior</label>
                 <div class="search_input">
-                    <input type="number" class="form-control" id="nExteriorInput" placeholder="No. exterior">
+                    <input type="number" class="form-control" id="nExteriorInput" placeholder="No. exterior" [(ngModel)]="nExterior">
                 </div>
             </div>
         </div>
@@ -97,7 +91,7 @@
             <div class="form-group">
                 <label for="nInteriorInput" class="search_Label">No. Interior</label>
                 <div class="search_input">
-                    <input type="number" class="form-control" id="nInteriorInput" placeholder="No. interior">
+                    <input type="text" class="form-control" id="nInteriorInput" placeholder="No. interior" [(ngModel)]="nInterior">
                 </div>
             </div>
         </div>
@@ -107,22 +101,20 @@
             <div class="form-group">
                 <label for="cPostalInput" class="search_Label">Codigo Postal</label>
 				<div class="search_input">
-					<input type="number" class="form-control" id="cPostalInput" placeholder="Ingresa CP">
+					<input type="number" class="form-control" id="cPostalInput" placeholder="Ingresa CP" [(ngModel)]="cPostal">
 				</div>
             </div>
         </div>
         <div class="col-md-5">
             <div class="form-group">
-                <label for="sexoInput" class="search_Label">Sexo</label>
+                <label for="estadoInput" class="search_Label">Estado</label>
                 <div class="search_input">
-					<select class="form-select" aria-label="Default select example" id="sexoInput">
-						<option value="" selected>Aguascalientes</option>
-						<option value="">Colima</option>
-						<option value="">Zacatecas</option>
-						<option value="">CDMX</option>
-					  </select>
+                  <select class="form-select" aria-label="Default select example" id="estadoInput" [(ngModel)]="estado">
+                    <option value="" selected>Seleccionar</option>
+                    <option *ngFor="let state of stateList" [value]="state.state_id" >{{state.name}}</option>
+                  </select>
                 </div>
-            </div>
+              </div>
         </div>
     </div>
 </div>
@@ -146,7 +138,7 @@
     <button type="button" class="btn btn-primary cancel_btn">
         Cancelar
     </button>
-    <button type="button" class="btn btn-primary registrar_btn">
+    <button type="button" class="btn btn-primary registrar_btn" (click)="saveElector()" *ngIf="areAllFieldsComplete()">
         Registrar Usuario
     </button>
 </div>

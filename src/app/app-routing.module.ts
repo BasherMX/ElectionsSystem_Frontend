@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './commonComponents/not-found/not-found.component';
+import { AuthGGuard } from './services/auth/auth-g.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'admin', pathMatch: 'full' },
@@ -11,6 +12,7 @@ const routes: Routes = [
   { 
     path: 'votation',
     loadChildren: () => import('./votation/auth-pages-votation/auth-votation.module').then(m => m.AuthVotationModule),
+    canActivate: [AuthGGuard]
   }, 
   { 
     path: 'realTime',

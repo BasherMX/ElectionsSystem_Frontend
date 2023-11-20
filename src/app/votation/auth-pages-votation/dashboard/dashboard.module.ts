@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const rts: Routes = [
   { path: '', redirectTo: 'vote', pathMatch: 'full'},
-  { path: 'vote', component: VoteComponent, pathMatch: 'full' }
+  { path: 'vote/:ExerciseId', component: VoteComponent, pathMatch: 'full' }
 ];
 
 
