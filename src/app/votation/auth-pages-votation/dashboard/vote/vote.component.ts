@@ -1,4 +1,9 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { StepsService } from './steps.service';
+import { UserDataService } from './user-data.service';
+import { HttpClient } from '@angular/common/http';
+
+const URL = 'http://localhost:3000';
 
 @Component({
   selector: 'app-vote',
@@ -7,168 +12,115 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 })
 export class VoteComponent {
   @ViewChild('cameraFeed') cameraFeed!: ElementRef;
+
   private mediaStream: MediaStream | null = null;
 
-  constructor() {
-    this.cameraFeed = {} as ElementRef;
-  }
-  nombre = "Jaime";
-  estado = "Aguascalientes";
-
-  seconds = 0;
-  step: number = 3;
-
+  dataBoleta: Array<any> = [];
   opciones: Array<any> = [];
   opcionesTotales = 0;
   opcionesTotalesArray: number[] = [];
 
+  votos: Array<any> = [];
+  selectedOption: number = 0;
+
+  envioVotos: Array<any> = [];
+  resultados: Array<any> = [];
+
   stepB = 1;
-  tipo = "GOBERNATURA";
+
+  constructor(
+    public stepService: StepsService,
+    public userData: UserDataService,
+    private http: HttpClient
+  ) {
+    this.stepService.currentStep$.subscribe((step) => {
+      //console.log(`Step=  ${step}`);
+      if (step == 4) {
+        this.cargarOpciones();
+      }
+    });
+  }
 
   up() {
-    this.step++;
-    if (this.step == 2 || this.step == 3) {
-      this.startCamera();
-    } else if (this.step == 4) {
-      //Obtencion de los datos
-      this.opcDisp();
-      this.cargarOpciones();
-    } else if (this.step > 5 || this.step < 0) {
-      this.step = 1;
-    }
-  }
-
-  startCamera() {
-    const constraints = { video: true };
-    navigator.mediaDevices.getUserMedia(constraints)
-      .then((stream) => {
-        this.mediaStream = stream;
-        this.cameraFeed.nativeElement.srcObject = stream;
-      });
-  }
-
-  stopCamera() {
-    if (this.mediaStream) {
-      const tracks = this.mediaStream.getTracks();
-      tracks.forEach(track => track.stop());
-      this.cameraFeed.nativeElement.srcObject = null;
-    }
-  }
-
-  scanQR() {
-    var vote = true;
-    if (vote) {
-      this.stopCamera();
-      this.up();
-    } else {
-      this.stopCamera();
-      this.step = 0;
-      this.count();
-    }
-  }
-
-  count() {
-    this.seconds = 10;
-    const intervalId = setInterval(() => {
-      this.seconds--;
-      if (this.seconds <= 0) {
-        clearInterval(intervalId);
-        this.up();
-      }
-    }, 1000);
-  }
-
-  scanFace() {
-    var vote = true;
-    if (vote) {
-      this.stopCamera();
-      this.up();
-    } else {
-      this.stopCamera();
-      this.step = 0;
-      this.count();
+    this.stepService.up();
+    if (this.stepService.currentStep > 5 || this.stepService.currentStep < 0) {
+      this.stepService.change(1);
     }
   }
 
   cargarOpciones() {
-    const indicadorElement = document.getElementById("bolitas");
-    if (this.stepB == 1) {
-      this.opciones = [
-        {
-          imageUrl: '../../../../../assets/Images/Logo_Instituto_Nacional_Electoral.svg.svg',
-          nombre: 'Candidato 1',
-          partido: 'Partido A',
-          coalicion: 'Coalición X',
-        },
-        {
-          imageUrl: '../../../../../assets/Images/Logo_Instituto_Nacional_Electoral.svg.svg',
-          nombre: 'Candidato 2',
-          partido: 'Partido B',
-          coalicion: 'Coalición Y',
-        },
-        {
-          imageUrl: '../../../../../assets/Images/Logo_Instituto_Nacional_Electoral.svg.svg',
-          nombre: 'Candidato 3',
-          partido: 'Partido C',
-          coalicion: 'Coalición Z',
-        },
-      ];
-    } else if (this.stepB == 2) {
-      this.opciones = [
-        {
-          imageUrl: '../../../../../assets/Images/Logo_Instituto_Nacional_Electoral.svg.svg',
-          nombre: 'Candidato 4',
-          partido: 'Partido A',
-          coalicion: 'Coalición 1',
-        },
-        {
-          imageUrl: '../../../../../assets/Images/Logo_Instituto_Nacional_Electoral.svg.svg',
-          nombre: 'Candidato 5',
-          partido: 'Partido B',
-          coalicion: 'Coalición 2',
-        },
-        {
-          imageUrl: '../../../../../assets/Images/Logo_Instituto_Nacional_Electoral.svg.svg',
-          nombre: 'Candidato 6',
-          partido: 'Partido C',
-          coalicion: 'Coalición 3',
-        },
-      ];
-    } else if (this.stepB == 3) {
-      this.opciones = [
-        {
-          imageUrl: '../../../../../assets/Images/Logo_Instituto_Nacional_Electoral.svg.svg',
-          nombre: 'Candidato 7',
-          partido: 'Partido X',
-          coalicion: 'Coalición A',
-        },
-        {
-          imageUrl: '../../../../../assets/Images/Logo_Instituto_Nacional_Electoral.svg.svg',
-          nombre: 'Candidato 8',
-          partido: 'Partido Y',
-          coalicion: 'Coalición B',
-        },
-        {
-          imageUrl: '../../../../../assets/Images/Logo_Instituto_Nacional_Electoral.svg.svg',
-          nombre: 'Candidato 9',
-          partido: 'Partido Z',
-          coalicion: 'Coalición C',
-        }
-      ];
+    this.http.get<any>(`${URL}/boleta`).subscribe((data) => {
+      this.dataBoleta = data;
+      this.opcionesTotales = this.dataBoleta.length;
+      this.opciones = this.dataBoleta[this.stepB - 1].candidates;
+      this.selectedOption = 0;
+    });
+  }
+
+
+  selectOption(option: any) {
+    if (this.selectedOption == option) {
+      this.selectedOption = 0;
+    } else {
+      this.selectedOption = option;
     }
   }
 
-  opcDisp() {
-    this.opcionesTotales = 3;
+  isOptionSelected(option: any): boolean {
+    return this.selectedOption === option;
   }
 
   changeOpc() {
-    this.stepB++;
+    this.votos.push(this.selectedOption);
+    if (this.stepB >= this.opcionesTotales) {
+      this.enviarVotos();
+      this.up();
+      return;
+      //console.log(this.votos);
+    } else {
+      this.stepB++;
+    }
     this.cargarOpciones();
+  }
+
+  enviarVotos() {
+    for (let i = 0; i < this.votos.length; i++) {
+      if (this.votos[i].id > 0) {
+        const estructure = {
+          ballot_id: this.dataBoleta[i].ballot_id,
+          candidate_id: this.votos[i].id,
+          isSpoiledVote: false,
+        };
+        this.resultados.push(`${this.votos[i].name} ${this.votos[i].first_lastname} ${this.votos[i].second_lastname}`);
+        this.envioVotos.push(estructure);
+      } else {
+        const estructure = {
+          ballot_id: this.dataBoleta[i].ballot_id,
+          candidate_id: 0,
+          isSpoiledVote: true,
+        };
+        this.resultados.push('Voto omitido');
+        this.envioVotos.push(estructure);
+      }
+    }
+
+    //Mandamos el array envioVotos
+    const jsonEnvioVotos = {
+      votes: this.envioVotos,
+    };
+    const jsonString = JSON.stringify(jsonEnvioVotos);
+    console.log(jsonString);
+
+    const body = { id: this.userData.getId(), voto: 1 };
+
+    this.http.post(`${URL}/actualizar`, body).subscribe(
+      (response) => {
+        console.log('Respuesta del servidor:', response);
+      }
+    );
   }
 
   range(n: number): number[] {
     return Array.from({ length: n }, (_, i) => i);
   }
-
 }

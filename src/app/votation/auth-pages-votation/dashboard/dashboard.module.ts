@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { VoteComponent } from './vote/vote.component';
 import { RouterModule, Routes } from '@angular/router';
+import { ScanQRComponent } from './vote/scan-qr/scan-qr.component';
+import { ScanFaceComponent } from './vote/scan-face/scan-face.component';
 
 
 const rts: Routes = [
@@ -13,7 +15,9 @@ const rts: Routes = [
 
 @NgModule({
   declarations: [
-    VoteComponent
+    VoteComponent,
+    ScanQRComponent,
+    ScanFaceComponent
   ],
   imports: [
     CommonModule,

@@ -20,8 +20,7 @@ import { AuthPagesVotationComponent } from './votation/auth-pages-votation/auth-
 import { DashboardOptionComponent } from './admin/adminComponents/dashboard-option/dashboard-option.component';
 import { FormsModule } from '@angular/forms';
 import { RealTimeComponent } from './real-time/real-time.component';
-
-
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -44,7 +43,8 @@ import { RealTimeComponent } from './real-time/real-time.component';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   exports:      [ 
     BotonComponent
