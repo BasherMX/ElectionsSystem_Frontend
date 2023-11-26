@@ -22,8 +22,8 @@ import { AuthPagesVotationComponent } from './votation/auth-pages-votation/auth-
 import { FormsModule } from '@angular/forms';
 import { WebcamModule } from 'ngx-webcam';
 import { RealTimeComponent } from './real-time/real-time.component';
+import { HttpClientModule } from '@angular/common/http';
 import { VerifyAccountComponent } from './admin/pages/verify-account/verify-account.component';
-
 
 
 

@@ -1,27 +1,92 @@
-<p>vote works!</p>
-
-
-<h2>{{step}}</h2>
-
-
-
-
-<div *ngIf="step === 1">
-    <p>Primera Parte</p>
-    <img src="../../../../../assets/Images/warning_machine.png" alt="">
-    <i class="fa fa-bath" aria-hidden="true" style="color: red;"></i>
+<div class="step1" *ngIf="stepService.currentStep === 1">
+    <img src="../../../../../assets/Images/Logo_Instituto_Nacional_Electoral.svg.svg" alt="">
+    <p>Bienvenid@!</p>
+    <button (click)="up()">Iniciar Votación</button>
 </div>
 
-<div *ngIf="step === 2">
-    <p>Segunda Parte</p>
-    <img src="../../../../../assets/Images/ballot_selected_icon.svg" alt="">
+<div class="step2" *ngIf="stepService.currentStep === 2">
+    <img src="../../../../../assets/Images/Logo_Instituto_Nacional_Electoral.svg.svg" alt="">
+    <div id="content">
+        <p id="text">Escanea El QR de tu credencial para votar</p>
+        <div>
+            <app-scan-qr></app-scan-qr>
+            <p id="caption">Coloca el QR Dentro del recuadro</p>
+        </div>
+    </div>
 </div>
 
-<div *ngIf="step === 3">
-    <p>Tercera Parte</p>
-    <img src="../../../../../assets/Images/votation_active.png" alt="">
+<div class="step0" *ngIf="stepService.currentStep === 0">
+    <img id="logo" src="../../../../../assets/Images/Logo_Instituto_Nacional_Electoral.svg.svg" alt="">
+    <img id="warning" src="../../../../../assets/Images/warning_machine.png" alt="">
+    <p id="atencion">ATENCIÓN</p>
+    <p id="voto-emitido">Ya haz emitido tu voto</p>
+    <p id="informacion-legal">“Se impondrá de trescientos a seiscientos días multa y prisión de cuatro a nueve años a
+        quien intente realizar más de un sufragio en votaciones de cualquier nivel; Código Federal de Instituciones y
+        Procedimientos Electorales (Cofipe). Ley General del Sistema de Medios de Impugnación en Materia Electoral
+        (LGSMIME). Ley Orgánica del Poder Judicial de la Federación (LOPJF). Código Penal Federal (CPF).”
+    </p>
+    <div id="content-progress-bar">
+        <div class="progress-bar"></div>
+        <p>{{stepService.seconds}} segundos</p>
+    </div>
 </div>
 
+<div class="step3" *ngIf="stepService.currentStep === 3">
+    <img src="../../../../../assets/Images/Logo_Instituto_Nacional_Electoral.svg.svg" alt="">
+    <div id="content">
+        <p id="text">Por Favor, coloque su rostro dentro del circulo para validar su identidad.</p>
+        <div>
+            <app-scan-face></app-scan-face>
+            <p id="caption">Manten tu rostro dentro del recuadro hasta completar el escaneo</p>
+        </div>
+    </div>
+</div>
 
+<div class="step4" *ngIf="stepService.currentStep === 4">
+    <div id="header">
+        <img src="../../../../../assets/Images/Logo_Instituto_Nacional_Electoral.svg.svg" alt="">
+        <p>{{ userData.getName() }}</p>
+    </div>
+    <p class="title">VOTACIÓN</p>
+    <div id="boleta">
+        <p id="tipo">{{ dataBoleta[stepB-1]?.charge_name }}</p>
+        <p id="estado">Estado: {{ userData.getEstado() }}</p>
+        <div id="opciones">
+            <div id="card" *ngFor="let opc of opciones" (click)="selectOption(opc)" [class.selected]="isOptionSelected(opc)">
+                <div class="image">
+                    <img [src]="opc.party_image" alt="">
+                </div>
+                <div class="text">
+                    <p>{{ opc.name }} {{ opc.first_lastname }} {{ opc.second_lastname }}</p>
+                    <p>{{ opc.party_id }}</p>
+                    <p>{{ opc.pseudonym }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="indicador">
+        <div *ngFor="let i of range(opcionesTotales)">
+            <span *ngIf="i+1 != stepB" class="circle"></span>
+            <span *ngIf="i+1 == stepB" class="actual"></span>
+        </div>
+    </div>
+    {{stepB}} de {{ opcionesTotales }}
 
-<button (click)="up()">Next</button>
+    <button (click)="changeOpc()">REALIZAR VOTO</button>
+</div>
+
+<div class="step5" *ngIf="stepService.currentStep === 5">
+    <img src="../../../../../assets/Images/Logo_Instituto_Nacional_Electoral.svg.svg" alt="">
+    <p class="title">RESUMEN DE VOTACIÓN</p>
+    <div id="boleta">
+        <div id="opciones">
+            <div id="card" *ngFor="let opc of votos; let i = index;">
+                <div class="text">
+                    <p id="cargo">{{dataBoleta[i].charge_name}}</p>
+                    <p id="label">Voto Emitido: </p>
+                    <p id="nombre">{{resultados[i]}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
