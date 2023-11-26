@@ -42,3 +42,21 @@ app-boton{
     color: @GrayPrincipal !important;
     text-decoration: none;
 }
+
+.form-group{
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+label{
+    font-weight: bold;
+}
+
+.form-group:focus-within .form-control {
+    outline: 2px solid @PrimaryColor !important;
+}
+
+.form-control:focus {
+    border-color: @PrimaryColor !important;
+    box-shadow: none !important;
+}

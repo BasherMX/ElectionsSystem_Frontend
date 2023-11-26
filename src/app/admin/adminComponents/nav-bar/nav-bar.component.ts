@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class NavBarComponent {
 
+   name = sessionStorage.getItem('userName');
+   userTypeName = sessionStorage.getItem('userTypeName');
+
 }

@@ -1,0 +1,88 @@
+<div class="container container_header">
+    <div class="container_title">Boletas Electorales</div>
+    <button type="button" class="btn btn-primary" style="width: max-content; padding: .5rem 2rem; font-size: 1.3rem;">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+        Nuevo
+    </button>
+</div>
+
+<div class="container bg-white searchBar">
+    <form class="row g-3 search_row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="idInput" class="search_Label">Buscar por ID</label>
+                <div class="search_input">
+                    <i class="fa fa-search"></i>
+                    <input type="text" class="form-control" id="idInput" [(ngModel)]="searchText" placeholder="Ingresa ID">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="cargoInput" class="search_Label">Cargo</label>
+                <select class="form-select" aria-label="Default select example" id="cargoInput">
+                    <option selected value="">Diputacion Federal</option>
+                    <option value="">Gubernatura</option>
+                    <option value="">Diputacion Local</option>
+                    <option value="">Presidencia</option>
+                    <option value="">Alcaldia</option>
+                    <option value="">Senaduria</option>
+                  </select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="statusInput" class="search_Label">Status</label>
+                <select class="form-select" aria-label="Default select example" id="statusInput">
+                    <option selected value="activo">Sin Asignar</option>
+                    <option value="inactivo">Asignada</option>
+                  </select>
+            </div>
+        </div>
+        <div class="col-md-2 end_col">
+                <button type="button" class="btn btn-primary Search_btn">
+                    Buscar
+                </button>
+        </div>
+      </form>
+</div>
+
+<div class="table_index container">
+    <table class="table">
+        <thead>
+          <tr>
+            <th style="padding-left: 2.5rem;">ID</th>
+            <th>Cargo a Elegir</th>
+            <th>Estatus</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of datos | paginate: { itemsPerPage: itemsPerPage, currentPage: page }">
+            <td style="padding-left: 2.5rem;">{{ item.id }}</td>
+            <td>{{ item.cargo }}</td>
+            <td>{{ item.status }}</td>
+            <td class="ActionsRow">
+              <a href="#" (click)="editarItem(item)">
+                <i class="fa fa-pencil"></i>
+              </a>
+              <a href="#">
+                <i class="fa fa-eye"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <div style="text-align: center;">
+        <pagination-controls 
+        class="my-pagination"
+        (pageChange)="page = $event"
+        previousLabel=""
+        nextLabel=""
+        >
+    </pagination-controls>
+      </div>
+
+
+</div>

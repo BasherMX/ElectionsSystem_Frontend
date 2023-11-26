@@ -1,1 +1,90 @@
-<p>control works!</p>
+<div class="container container_header">
+  <div class="container_title">Usuarios del sistema</div>
+  <button type="button" class="btn btn-primary" style="width: max-content; padding: .5rem 2rem; font-size: 1.3rem;" (click)="goToNew()">
+      <i class="fa fa-plus" aria-hidden="true"></i>
+      Nuevo
+  </button>
+</div>
+
+<div class="container bg-white searchBar">
+  <form class="row g-3 search_row">
+      <div class="col-md-4">
+          <div class="form-group">
+              <label for="idInput" class="search_Label">Buscar por Nombre o ID</label>
+              <div class="search_input">
+                  <i class="fa fa-search"></i>
+                  <input type="text" class="form-control" id="idInput" [(ngModel)]="searchText" name="searchText" placeholder="Ingresa ID o Nombre"
+                  (ngModelChange)="buscarNombreId()">
+              </div>
+          </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+            <label for="tipoInput" class="search_Label">Tipo Usuario</label>
+            <select class="form-select" aria-label="Default select example" id="tipoInput" [(ngModel)]="tipoUser" name="tipoUser">
+              <option [value]="0">Todos</option>
+              <option [value]="1">Admin SR</option>
+              <option [value]="2">Admin JR</option>
+          </select>
+          
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="statusInput" class="search_Label">Status</label>
+            <select class="form-select" aria-label="Default select example" id="statusInput" [(ngModel)]="statusInput" name="statusInput">
+                <option [value]="1">Activo</option>
+                <option [value]="0">Inactivo</option>
+            </select>
+        </div>
+    </div>
+      <div class="col-md-2 end_col">
+          <button type="button" class="btn btn-primary Search_btn" (click)="filtrarPorDrops()">
+              Buscar
+          </button>
+      </div>
+  </form>
+</div>
+
+<div class="table_index container">
+  <table class="table">
+      <thead>
+          <tr>
+              <th style="padding-left: 2.5rem;">ID</th>
+              <th>Nombre</th>
+              <th>Tipo Usuario</th>
+              <th>Estatus</th>
+              <th>Acciones</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let item of datos | paginate: { itemsPerPage: itemsPerPage, currentPage: page }">
+              <td style="padding-left: 2.5rem;">{{ item.user_id }}</td>
+              <td>{{ item.name + " " + item.first_lastname + " " + item.second_lastname }}</td>
+              <td *ngIf="item.user_type === 1">Senior</td>
+              <td *ngIf="item.user_type === 2">Junior</td>
+              <td *ngIf="item.enable === 1">Activo</td>
+              <td *ngIf="item.enable === 0">Inactivo</td>
+              <td class="ActionsRow">
+                  <span (click)="editarItem(item)">
+                      <i class="fa fa-pencil"></i>
+                  </span>
+                  <span (click)="borrarItem(item)">
+                      <i class="fa fa-trash"></i>
+                  </span>
+              </td>
+          </tr>
+      </tbody>
+  </table>
+
+  <div style="text-align: center;">
+      <pagination-controls 
+      class="my-pagination"
+      (pageChange)="page = $event"
+      previousLabel=""
+      nextLabel=""
+      >
+  </pagination-controls>
+  </div>
+</div>

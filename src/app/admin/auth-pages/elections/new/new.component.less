@@ -1,0 +1,290 @@
+@import '../../../../../vars.less';
+
+.container_header{
+    width: 90%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.container_title{
+    font-weight: 700;
+    font-size: 3.2rem;
+}
+
+
+.rounded_borders{
+    width: 90%;
+    padding: 1rem 2.5rem 1.1rem;
+    margin-top: 15px;
+    gap: 15px;
+    border-radius: 20px;
+    box-shadow: 0px 4px 5px rgba(0 0 0 /5%);
+}
+
+.form-group{
+    min-width: 50%;
+    margin: 0;
+    padding: 0;
+}
+
+.search_input{
+    width: 100%;
+    height: 40px;
+    position: relative;
+}
+
+.new_input{
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+button{
+    background-color: @PrimaryColor;
+    border: none;
+    outline: none;
+    margin-bottom: 1.5rem;
+    width: 200px;
+}
+
+button:hover{
+    background-color: @PinkSecondary;
+}
+
+button:active{
+    background-color: @PinkSecondary !important;
+    transform: scale(1.02);
+    transition: all ease .2s ;
+}
+
+.cancel_confirm{
+    width: 90%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding-bottom: 50px;
+    margin-top: 15px;
+    margin-bottom: 40px;
+    gap: 15px;
+    border-radius: 20px;
+}
+
+.registrar_btn{
+    width: max-content;
+    padding: .5rem 2rem;
+    font-size: 1.2;
+    font-weight: 600;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.cancel_btn{
+    width: max-content;
+    padding: .5rem 2rem;
+    font-size: 1.2;
+    font-weight: 600;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-color: @GrayPrincipal;
+}
+
+.row{
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+
+
+// Modal
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.549);
+  }
+  
+  .modal-content {
+    background-color: #E3E3E3;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+  
+  .modal-header {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .modal-title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .close {
+    float: right;
+    font-size: 3rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: @PrimaryColor;
+  }
+  
+  .modal-body {
+    padding: 10px;
+  }
+  
+  .modal-footer {
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    text-align: right;
+  }
+
+  .ballotContainer{
+    min-height: 70vh;
+    overflow-y: scroll;
+    flex-wrap: wrap;
+  }
+
+  .cardBallot{
+    cursor: pointer;
+    border: 5px dashed @GrayPrincipal;
+    height: 150px;
+    color: @GrayPrincipal;
+    
+    .card-body{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        height: 100%;
+        i{
+            font-size: 3rem;
+        }
+        p{
+            font-size: 1.2rem;
+        }
+    }
+  }
+
+  .cardBallot :hover{
+    transition: all .2s ease;
+    color: @PrimaryColor;
+  }
+
+
+  .cardBallotFinished{
+    border: 5px solid @PrimaryColor;
+    color: black;
+    height: 150px;
+    .card-body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        height: 100%;
+        i{
+            font-size: 3rem;
+        }
+        p{
+            font-size: 1.2rem;
+        }
+    }
+
+    :hover{
+        transition: all .2s ease;
+        color: black;
+      }
+  }
+
+  .stepMarker{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 2rem;
+  }
+
+  .markers{
+    display: flex;
+    gap: 8px;
+  }
+
+  .marker{
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    background-color: @GrayPrincipal;
+  }
+  
+  .markerActive{
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    background-color: @PrimaryColor;
+  }
+
+  .newCandidate{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .CandidateOptions{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+
+    div{
+      width: 32%;
+
+      .form-group{
+        width: 100%;
+
+        input{
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .search_row{
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 50px;
+    font-size: 1.2rem;
+}
+
+.cardCandidateFinished{
+  border: 5px solid @PrimaryColor;
+  color: black;
+  height: 150px;
+  .card-body{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 100%;
+      i{
+          font-size: 2rem;
+      }
+      p{
+          font-size: 1rem;
+      }
+  }
+
+  :hover{
+      transition: all .2s ease;
+      color: black;
+    }
+}

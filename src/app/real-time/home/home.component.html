@@ -1,1 +1,17 @@
-<p>home works!</p>
+<real_time-navbar></real_time-navbar>
+<!-- <div id="separador"></div> -->
+<div id="content">
+    <p id="banner1">SIGUE LAS ELECCIONES <br>
+        <span id="banner1_1">EN VIVO!</span>
+    </p>
+    <p id="banner2">Selecciona Tu estado!</p>
+    <div id="button_dropdown_combo">
+        <div class="mb-3">
+            <select class="form-select" aria-label="Default select example" id="estadoSelect" name="estadoSelecc" [(ngModel)]="estadoSelecc">
+              <option  [value]="0">Seleccionar...</option>
+              <option *ngFor="let estado of estados" [value]="estado.state_id">{{ estado.name }}</option>
+            </select>
+        </div>       
+        <button type="button" class="btn btn-send" (click)="sendState()">BUSCAR!</button>
+    </div>
+</div>

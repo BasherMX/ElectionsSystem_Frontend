@@ -10,27 +10,34 @@
         </button>
 
         <!-- BOTONES PARA ADMINISTRADOR SR. -->
-        <button class="btn" [routerLink]="'/admin/auth/excercise/control'">
+        <button class="btn" [routerLink]="'/admin/auth/excercise/control'" *ngIf="UserTypeBool == '1'">
             <div>
                 <i class="fa fa-archive" aria-hidden="true"></i>
                 <span>Ejercicios</span>
             </div>
         </button>
-        <button class="btn" [routerLink]="'/admin/auth/partyes/control'">
+        <button class="btn" [routerLink]="'/admin/auth/partyes/control'" *ngIf="UserTypeBool == '1'">
             <div>
                 <i class="fa fa-flag"></i>
                 <span>Partidos</span>
             </div>
         </button>
-        <button class="btn" [routerLink]="'/admin/auth/users/control'">
+        <button class="btn" [routerLink]="'/admin/auth/users/control'" *ngIf="UserTypeBool == '1'">
             <div>
                 <i class="fa fa-users"></i>
                 <span>Usuarios</span>
             </div>
         </button>
 
+        <button class="btn" [routerLink]="'/admin/auth/votation'" *ngIf="UserTypeBool == '1'">
+            <div>
+                <i class="fa fa-users"></i>
+                <span>Votación</span>
+            </div>
+        </button>
+
         <!--    BOTON PARA ADMINISTRADOR JR. -->
-        <button class="btn" [routerLink]="'/admin/auth/users/control'">
+        <button class="btn" [routerLink]="'/admin/auth/electors/control'" *ngIf="UserTypeBool == '2'">
             <div>
                 <i class="fa fa-users"></i>
                 <span>Electores</span>
@@ -38,7 +45,8 @@
         </button>
     </div>
 
-    <button class="btn" style="padding-left: 1.5rem; font-weight: normal; transform: scale(.8);">
+
+    <button class="btn" style="padding-left: 1.5rem; font-weight: normal; transform: scale(.8);" (click)="onLogOut()">
         <div>
             <i class="fa fa-sign-out" aria-hidden="true" style=""></i>
             <span>Cerrar Sesión</span>

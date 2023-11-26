@@ -1,0 +1,9 @@
+<div class="container mt-5">
+    <div class="card">
+      <div *ngIf="spinner" class="spinner-border" role="status" style="width: 100px; height: 100px;">
+      </div>
+      <h2 class="title mt-5" style="text-transform: uppercase;">{{text}}</h2>
+      <app-boton *ngIf="verified" texto="Iniciar Sesión" class="mt-5" style="width: 50%; height: 45px; font-size: 2rem;" (click)="redirectToAdminLogin()"></app-boton>
+    </div>
+  </div>
+  

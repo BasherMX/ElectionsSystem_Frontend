@@ -12,9 +12,11 @@ export class NotFoundComponent {
   constructor(private router: Router){}
 
   ngOnInit(){
-   setTimeout(() => {
+    // this.goToLogin();
+  }
+
+  goToLogin(){
     this.router.navigate(['/admin/login']);
-   },5000);
   }
 
 }

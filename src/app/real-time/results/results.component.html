@@ -1,1 +1,185 @@
-<p>results works!</p>
+<real_time-navbar></real_time-navbar>
+<div id="content">
+    <p id="banner1">RESULTADOS ELECCIONES <span id="banner1_1">EN VIVO!</span></p>
+    <p id="banner2">AGUASCALIENTES</p>
+    <p id="banner3">Participacion Ciudadana</p>
+
+    <div id="participacion-container">
+        <div id="donut_chart"></div>
+        <div id="votos-esperados">
+            <p>
+                Votos esperados <br>
+                <span class="cantidad_voto">{{this.resultsData[0].expectedVotes}}</span>
+            </p>
+        </div>
+        <div id="votos-realizados">
+            <p>
+                Votos realizados <br>
+                <span class="cantidad_voto">{{this.resultsData[0].totalVotes + this.resultsData[0].anuledVotes}}</span>
+            </p>
+        </div>
+        <div id="footer_part">
+            <p>Actualizacion: 13/08/2023 13:00hrs</p>
+        </div>
+    </div>
+</div>
+
+<p id="banner4">Resultados</p>
+
+<div id="content">
+    <div id="card-container">
+        <div id="row_1">
+            <p>Alcaldia</p>
+        </div>
+        <div id="row_2">
+            <div id="card">
+                <div id="logo_partido">
+                    <object data="../../../assets/Images/partidos_politicos/PT.svg" type="image/svg+xml"></object>
+                </div>
+                <div id="info_partido">
+                    <p id="candidato">Jose Antonio Gutierrez Sanchez</p>
+                    <p id="nombre_partido">Partido del Trabajo</p>
+                    <p id="porcentaje">57%</p>
+                    <p id="votos">299, 200 Votos</p>
+                </div>
+            </div>
+
+            <div id="card">
+                <div id="logo_partido">
+                    <object data="../../../assets/Images/partidos_politicos/PRD.svg" type="image/svg+xml"></object>
+                </div>
+                <div id="info_partido">
+                    <p id="candidato">Armando Josue Andares Baez</p>
+                    <p id="nombre_partido">Partido de la Revolucion Democrática</p>
+                    <p id="porcentaje">35%</p>
+                    <p id="votos">183,700 Votos</p>
+                </div>
+            </div>
+
+        </div>
+        <div id="row_3">
+            <div id="card">
+                <div id="logo_partido">
+                    <object data="../../../assets/Images/partidos_politicos/PRI.svg" type="image/svg+xml"></object>
+                </div>
+                <div id="info_partido">
+                    <p id="candidato">Armando Josue Andares Baez</p>
+                    <p id="porcentaje">04%</p>
+                </div>
+            </div>
+            <div id="card">
+                <div id="logo_partido">
+                    <object data="../../../assets/Images/partidos_politicos/RSP.svg" type="image/svg+xml"></object>
+                </div>
+                <div id="info_partido">
+                    <p id="candidato">Armando Josue Andares Baez</p>
+                    <p id="porcentaje">02%</p>
+                </div>
+            </div>
+            <div id="card">
+                <div id="logo_partido">
+                    <object data="../../../assets/Images/partidos_politicos/PAN.svg" type="image/svg+xml"></object>
+                </div>
+                <div id="info_partido">
+                    <p id="candidato">Armando Josue Andares Baez</p>
+                    <p id="porcentaje">01%</p>
+                </div>
+            </div>
+            <div id="card">
+                <div id="logo_partido">
+                    <object data="../../../assets/Images/partidos_politicos/UNKOWN.svg" type="image/svg+xml"></object>
+                </div>
+                <div id="info_partido">
+                    <p id="candidato">Armando Josue Andares Baez</p>
+                    <p id="porcentaje">01%</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="content">
+    <div id="card-container">
+        <div id="row_1">
+            <p>Gubernatura</p>
+        </div>
+        <div id="row_2">
+            <div id="card">
+                <div id="logo_partido">
+                    <object data="../../../assets/Images/partidos_politicos/PT.svg" type="image/svg+xml"></object>
+                </div>
+                <div id="info_partido">
+                    <p id="candidato">Jose Antonio Gutierrez Sanchez</p>
+                    <p id="nombre_partido">Partido del Trabajo</p>
+                    <p id="porcentaje">57%</p>
+                    <p id="votos">299, 200 Votos</p>
+                </div>
+            </div>
+
+            <div id="card">
+                <div id="logo_partido">
+                    <object data="../../../assets/Images/partidos_politicos/PRD.svg" type="image/svg+xml"></object>
+                </div>
+                <div id="info_partido">
+                    <p id="candidato">Armando Josue Andares Baez</p>
+                    <p id="nombre_partido">Partido de la Revolucion Democrática</p>
+                    <p id="porcentaje">35%</p>
+                    <p id="votos">183,700 Votos</p>
+                </div>
+            </div>
+
+        </div>
+        <div id="row_3">
+            <div id="card">
+                <div id="logo_partido">
+                    <object data="../../../assets/Images/partidos_politicos/PRI.svg" type="image/svg+xml"></object>
+                </div>
+                <div id="info_partido">
+                    <p id="candidato">Armando Josue Andares Baez</p>
+                    <p id="porcentaje">04%</p>
+                </div>
+            </div>
+            <div id="card">
+                <div id="logo_partido">
+                    <object data="../../../assets/Images/partidos_politicos/RSP.svg" type="image/svg+xml"></object>
+                </div>
+                <div id="info_partido">
+                    <p id="candidato">Armando Josue Andares Baez</p>
+                    <p id="porcentaje">02%</p>
+                </div>
+            </div>
+            <div id="card">
+                <div id="logo_partido">
+                    <object data="../../../assets/Images/partidos_politicos/PAN.svg" type="image/svg+xml"></object>
+                </div>
+                <div id="info_partido">
+                    <p id="candidato">Armando Josue Andares Baez</p>
+                    <p id="porcentaje">01%</p>
+                </div>
+            </div>
+            <div id="card">
+                <div id="logo_partido">
+                    <object data="../../../assets/Images/partidos_politicos/UNKOWN.svg" type="image/svg+xml"></object>
+                </div>
+                <div id="info_partido">
+                    <p id="candidato">Armando Josue Andares Baez</p>
+                    <p id="porcentaje">01%</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p id="banner5">Resumen de Votacion</p>
+
+<div id="content">
+    <div id="graph-container">
+      <div class="graph" *ngFor="let result of resultsData; let i = index">
+        <p>{{ result.charge_name }}</p>
+        <div id="donut_chart_{{i}}"></div>
+        <div id="column_chart_{{i}}"></div>
+      </div>
+    </div>
+</div>
+
+<real_time-footer></real_time-footer>

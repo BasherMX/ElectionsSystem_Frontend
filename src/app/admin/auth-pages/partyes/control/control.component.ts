@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { PoliticalPartyService } from 'src/app/services/politicalParty/political-party.service';
 
 
 @Component({
@@ -8,18 +10,40 @@ import { Component } from '@angular/core';
 })
 export class ControlComponent {
 
-  datos = [
-    { id: 232323, nombre: 'Partido Revolucionario Institucional', acronimo: 'PRI' },
-    { id: 201103, nombre: 'Partido de Acción Nacional', acronimo: 'PAN' },
-    { id: 3, nombre: 'Movimiento Regeneración Nacional', acronimo: 'MORENA' },
-    { id: 4, nombre: 'Partido de la Revolución Democrática', acronimo: 'PRD' },
-    { id: 5, nombre: 'Partido del Trabajo', acronimo: 'PT' },
-    { id: 6, nombre: 'Partido Verde Ecologista de México', acronimo: 'PVEM' },
-    { id: 7, nombre: 'Encuentro Social', acronimo: 'PES' },
-  ];
+  datos: any;
+
+  constructor(private router: Router, private apiService: PoliticalPartyService){
+    this.getPartyesData();
+  }
+
   page = 1;
   itemsPerPage = 6; // Cambia este valor según tus necesidades
   searchText: string = '';
+
+  getPartyesData() {
+    this.apiService.getAllEnableParties().subscribe(
+      (res) => {
+        this.datos = res; // Make a copy of the original data
+      },
+      (err) => {
+        alert('ERROR: ' + err.error.error);
+      }
+    );
+  }
+
+  buscarNombreId() {
+    if (this.searchText.trim() !== '') {
+      const searchTextLower = this.searchText.toLowerCase();
+      this.datos = this.datos.filter((item: { party_id: string | string[]; name: string; acronym: string;}) => {
+        const partyIDs = Array.isArray(item.party_id) ? item.party_id : [item.party_id];
+        return partyIDs.some(id => id.toString().toLowerCase().includes(searchTextLower)) ||
+               item.name.toLowerCase().includes(searchTextLower) ||
+               item.acronym.toLowerCase().includes(searchTextLower)
+      });
+    } else {
+      this.getPartyesData();
+    }
+  }
 
   
 
@@ -31,6 +55,10 @@ export class ControlComponent {
   borrarItem(item: any) {
     // Lógica para borrar el elemento
     console.log('Borrar', item);
+  }
+
+  goToNew(){
+    this.router.navigate(["admin/auth/partyes/new"]);
   }
 
 }

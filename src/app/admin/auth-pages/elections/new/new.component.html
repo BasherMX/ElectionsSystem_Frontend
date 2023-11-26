@@ -1,0 +1,319 @@
+<!-- Registro Ejercicio -->
+<div class="container container_header" *ngIf="step == 1">
+    <div class="container_title">Nuevo Ejercicio Electoral</div>
+</div>
+
+<div class="container bg-white rounded_borders" *ngIf="step == 1">
+    <div class="row g-3 align-items-start">
+        <div class="col-md-6">
+            <label for="eleccionInput" class="new_input">Seleccione el Tipo de Eleccion</label>
+            <div>
+                <select class="form-select" aria-label="Default select example" id="eleccionInput"
+                    [(ngModel)]="ejercicio.election_type_id">
+                    <option value="" disabled selected hidden>Seleccionar Tipo de Elección</option>
+                    <option value="1">Ordinaria</option>
+                    <option value="2">Extraordinaria</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row g-3">
+        <div class="col-md-6">
+            <label for="estadoInput" class="new_input">Seleccione el Estado</label>
+            <div>
+                <select class="form-select" aria-label="Default select example" id="estadoInput" name="estadoInput"
+                    [(ngModel)]="ejercicio.state_id">
+                    <option value="" disabled selected hidden>Seleccionar Estado</option>
+                    <option *ngFor="let state of stateList" [value]="state.state_id">{{state.name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label for="dateInput" class="new_input">Fecha del Ejercicio</label>
+            <div class="search_input">
+                <input type="date" class="form-control" id="dateInput" [(ngModel)]="ejercicio.date">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container cancel_confirm" *ngIf="step == 1">
+    <button type="button" class="btn btn-primary cancel_btn">
+        Cancelar
+    </button>
+    <button type="button" class="btn btn-primary registrar_btn" (click)="guardar()">
+        Registrar Ejercicio
+    </button>
+</div>
+
+
+
+
+
+
+<!-- Boletas -->
+<div class="container container_header" *ngIf="step == 2">
+    <div class="container_title">Agregar Boleta</div>
+</div>
+
+<div class="container bg-white rounded_borders d-flex align-items-center justify-content-center ballotContainer"
+    *ngIf="step == 2">
+
+    <div class="card cardBallotFinished" style="width: 30%;" *ngFor="let ballot of BallotList; let i = index">
+        <div class="card-body">
+            <div class="left" style="text-align: left; max-height: max-content;">
+                <p class="card-title" style="font-size: 1.2rem;"><b>{{"Boleta " + (i+1)}}</b></p>
+                <p class="card-text" style="font-size: .9rem;">Cargo:</p>
+                <p class="card-text">{{getIdToName(ballot.charge_id)}}</p>
+            </div>
+            <div class="imageBallot" style="position: relative;">
+                <span class="close" style="position: absolute; top: 5px; right: 5px;" (click)="popCharge(i, ballot)">&times;</span>
+                <img src="../../../../../assets/Images/forBallot.png" alt="ballotimage">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card cardBallot" style="width: 30%;" (click)="openModal()">
+        <div class="card-body">
+            <i class="fa fa-plus"></i>
+            <p class="card-text">Nueva Boleta</p>
+        </div>
+    </div>
+
+    
+    
+</div>
+
+<div class="container cancel_confirm " *ngIf="step == 2 ">
+    <button type="button" class="btn btn-primary cancel_btn" (click)="closeModal()">
+        Cancelar
+    </button>
+    <button type="button" class="btn btn-primary registrar_btn" (click)="goToControl()"
+        *ngIf="BallotList.length != 0">
+        Terminar Registro
+    </button>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- MODAL -->
+<div #modal class="modal">
+    <div class="modal-content" *ngIf="ballotStep == 1">
+        <div>
+            <span class="close" (click)="closeModal()">&times;</span>
+        </div>
+        <div>
+            <div class="container container_header">
+                <div class="container_title">Nueva Boleta Electoral</div>
+            </div>
+
+            <div class="container bg-white rounded_borders">
+                <div class="row g-3 align-items-start">
+                    <div class="col-md-6">
+                        <label for="eleccionInput" class="new_input">Seleccione Cargo a elegir</label>
+                        <div>
+                            <select class="form-select" aria-label="Default select example" id="eleccionInput"
+                                [(ngModel)]="BallotAux.charge_id">
+                                <option *ngFor="let option of chargeOptionsAux" [value]="option.id">{{ option.name }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stepMarker">
+                <div class="markers">
+                    <div class="markerActive"></div>
+                    <div class="marker"></div>
+                </div>
+                <p>{{ballotStep + " de 2"}}</p>
+            </div>
+
+
+            <div class="container cancel_confirm ">
+                <button type="button" class="btn btn-primary cancel_btn" (click)="closeModal()">
+                    Cancelar
+                </button>
+                <button type="button" class="btn btn-primary registrar_btn" (click)="moveBallotStep()"
+                    *ngIf="BallotAux.charge_id != 0">
+                    Siguiente
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal-content" style="transform: scale(.9);" *ngIf="ballotStep == 2">
+        <div>
+            <span class="close" (click)="closeModal()">&times;</span>
+        </div>
+        <div>
+            <div class="container container_header" *ngIf="step == 2">
+                <div class="container_title">Registro de Candidatos</div>
+            </div>
+
+            <div class="container bg-white rounded_borders d-flex align-items-center justify-content-center ballotContainer"
+                *ngIf="step == 2">
+
+                <div class="card cardCandidateFinished" style="width: 30%; overflow: hidden;"
+                    *ngFor="let candidate of BallotAux.candidates; let i = index">
+                    <div class="card-body">
+                        <div class="left" style="text-align: left; max-height: max-content;">
+                            <p class="card-text" style="font-size: 1rem; font-weight: bold;">Nombre:</p>
+                            <p class="card-text" style="font-size: 1rem;">{{candidate.name + " " +
+                                candidate.first_lastname + " " + candidate.second_lastname + " (" +getPartyName(candidate.party_id) +")" }}</p>
+                        </div>
+                        <div class="imageBallot" style="position: relative;">
+                            <span class="close" style="position: absolute; top: 5px; right: 5px;" (click)="popCandidate(i, candidate)">&times;</span>
+                            <img src="../../../../../assets/Images/forBallot.png" alt="ballotimage">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="card cardBallot" style="width: 30%;" (click)="showCandidateRegister()">
+                    <div class="card-body">
+                        <i class="fa fa-plus"></i>
+                        <p class="card-text">Nuevo Candidato</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="stepMarker">
+                <div class="markers">
+                    <div class="marker"></div>
+                    <div class="markerActive"></div>
+                </div>
+                <p>{{ballotStep + " de 2"}}</p>
+            </div>
+
+
+            <div class="container cancel_confirm ">
+                <button type="button" class="btn btn-primary cancel_btn" (click)="closeModal()">
+                    Cancelar
+                </button>
+                <button type="button" class="btn btn-primary registrar_btn" (click)="moveBallotStep()"
+                    *ngIf="BallotAux.candidates.length != 0">
+                    Terminar Registro
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal-content" style="transform: scale(.9);" *ngIf="ballotStep == 3">
+        <div>
+            <span class="close" (click)="closeModal()">&times;</span>
+        </div>
+        <div>
+            <div class="container container_header" *ngIf="step == 2">
+                <div class="container_title">Registro de Candidatos</div>
+            </div>
+
+            <div class="newCandidate container bg-white rounded_borders d-flex align-items-center justify-content-center ballotContainer"
+                *ngIf="step == 2">
+                <div class="container_title" style="font-size: 2rem; color: gray;">Nuevo Candidato</div>
+
+                <div class="row g-3 search_row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="nombreInput" class="search_Label">Nombre(s)</label>
+                            <div class="search_input">
+                                <input type="text" class="form-control" id="nombreInput" placeholder="Ingrese el Nombre"
+                                    [(ngModel)]="CandidateAux.name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="apepatInput" class="search_Label">Apellido Paterno</label>
+                            <div class="search_input">
+                                <input type="text" class="form-control" id="apepatInput"
+                                    placeholder="Ingrese el Apellido Paterno" [(ngModel)]="CandidateAux.first_lastname">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="apematInput" class="search_Label">Apellido Materno</label>
+                            <div class="search_input">
+                                <input type="text" class="form-control" id="apematInput"
+                                    placeholder="Ingrese el Apellido Materno"
+                                    [(ngModel)]="CandidateAux.second_lastname">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-3 search_row">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="pseudonimoInput" class="search_Label">Pseudonimo</label>
+                            <div class="search_input">
+                                <input type="text" class="form-control" id="pseudonimoInput"
+                                    placeholder="Ingrese el pseudonimo" [(ngModel)]="CandidateAux.pseudonym">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="cargoInput" class="search_Label">Seleccione Partido Politico</label>
+                            <div class="search_input">
+                                <select class="form-select" id="cargoInput" [(ngModel)]="CandidateAux.party_id">
+                                    <option *ngFor="let party of PartiesListAux" [value]="party.party_id">{{party.acronym}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container cancel_confirm ">
+                    <button type="button" class="btn btn-primary cancel_btn" (click)="ballotStep = 2">
+                        Cancelar
+                    </button>
+                    <button type="button" class="btn btn-primary registrar_btn" (click)="addCandidateToBallot()"
+                        *ngIf="CandidateAux.name != '' && CandidateAux.first_lastname != '' && CandidateAux.party_id != 0 && CandidateAux.second_lastname != ''">
+                        Registrar
+                    </button>
+                </div>
+
+
+
+
+            </div>
+
+            <div class="stepMarker">
+                <div class="markers">
+                    <div class="marker"></div>
+                    <div class="markerActive"></div>
+                </div>
+                <p>{{2 + " de 2"}}</p>
+            </div>
+
+
+            <div class="container cancel_confirm ">
+                <button type="button" class="btn btn-primary cancel_btn" (click)="closeModal()">
+                    Cancelar
+                </button>
+                <button type="button" class="btn btn-primary registrar_btn" (click)="moveBallotStep()"
+                    *ngIf="BallotAux.candidates.length != 0">
+                    Siguiente
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>

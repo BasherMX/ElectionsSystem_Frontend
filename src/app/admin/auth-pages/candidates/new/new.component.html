@@ -1,0 +1,82 @@
+<div class="container container_header">
+    <div class="container_title">Nuevo Candidato(a)</div>
+</div>
+
+<!-- <div class="container bg-white searchBar">
+	<div class="row g-3 ">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for="boletaInput" class="search_Label">Seleccione la Boleta Electoral</label>
+                <div class="search_input">
+                    <input type="text" class="form-control" id="boletaInput" placeholder="AGS0032ACB12" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 end_col">
+			<button type="button" class="btn btn-primary Search_btn">
+				Seleccionar
+			</button>
+        </div>
+	</div>
+</div> -->
+
+<div class="container bg-white searchBar">
+	<div class="row g-3 search_row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="nombreInput" class="search_Label">Nombre(s)</label>
+				<div class="search_input">
+					<input type="text" class="form-control" id="nombreInput" placeholder="Ingrese el Nombre">
+				</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="apepatInput" class="search_Label">Apellido Paterno</label>
+				<div class="search_input">
+					<input type="text" class="form-control" id="apepatInput" placeholder="Ingrese el Apellido Paterno">
+				</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="apematInput" class="search_Label">Apellido Materno</label>
+				<div class="search_input">
+					<input type="text" class="form-control" id="apematInput" placeholder="Ingrese el Apellido Materno">
+				</div>
+            </div>
+        </div>
+    </div>
+	<div class="row g-3 search_row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for="pseudonimoInput" class="search_Label">Pseudonimo</label>
+				<div class="search_input">
+					<input type="text" class="form-control" id="pseudonimoInput" placeholder="Ingrese el Apellido Materno">
+				</div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for="cargoInput" class="search_Label">Seleccione Partido Politico</label>
+                <div class="search_input">
+					<select class="form-select" aria-label="Default select example" id="cargoInput">
+						<option selected value="">PAN</option>
+						<option value="">PRI</option>
+						<option value="">PRD</option>
+						<option value="">MORENA</option>
+					  </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container cancel_confirm">
+    <button type="button" class="btn btn-primary cancel_btn">
+        Cancelar
+    </button>
+    <button type="button" class="btn btn-primary registrar_btn" (click)="redirigir() ">
+        Registrar Candidato
+    </button>
+</div> 

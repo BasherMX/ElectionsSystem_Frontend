@@ -4,18 +4,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ElectionsListComponent } from './elections-list/elections-list.component';
 import { ResultsComponent } from './results/results.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component';
+import { FormsModule } from '@angular/forms';
 
 export const routes: Routes = [
-  {
-    path: '',
-    component: HomeComponent,
-    children: [
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
-      { path: 'home', component: HomeComponent, pathMatch: 'full' },
-      { path: 'election-list/:id', component: ElectionsListComponent, pathMatch: 'full' },
-      { path: 'results/:id', component: ResultsComponent, pathMatch: 'full' },
-    ]
-  }
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent, pathMatch: 'full' },
+  { path: 'election-list/:id', component: ElectionsListComponent, pathMatch: 'full' },
+  { path: 'results/:id', component: ResultsComponent, pathMatch: 'full' }
 ];
 
 
@@ -23,11 +20,14 @@ export const routes: Routes = [
   declarations: [
     HomeComponent,
     ElectionsListComponent,
-    ResultsComponent
+    ResultsComponent,
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
+    FormsModule,
     CommonModule,
-    RouterModule.forChild(routes),
+    RouterModule.forChild(routes)
   ]
 })
 export class RealTimeModule { }

@@ -16,10 +16,23 @@ export const routes: Routes = [
         path: 'partyes',
         loadChildren: () => import('../auth-pages/partyes/partyes.module').then(m => m.PartyesModule),
       },
-      // { 
-      //   path: 'partyes',
-      //   loadChildren: () => import('../auth-pages/partyes/partyes.module').then(m => m.PartyesModule),
-      // },
+      { 
+        path: 'excercise',
+        loadChildren: () => import('../auth-pages/elections/elections.module').then(m => m.ElectionsModule),
+      },
+      { 
+        path: 'users',
+        loadChildren: () => import('../auth-pages/users/users.module').then(m => m.UsersModule),
+      },
+      { 
+        path: 'electors',
+        loadChildren: () => import('../auth-pages/electors/electors.module').then(m => m.ElectorsModule),
+      },
+      { 
+        path: 'votation',
+        loadChildren: () => import('../auth-pages/votation/votation-admin.module').then(m => m.VotationAdminModule),
+        
+      },
     ]
   }
 ];
