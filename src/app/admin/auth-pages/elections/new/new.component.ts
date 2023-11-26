@@ -52,6 +52,10 @@ chargeOptionsAux = [...this.chargeOptions];
       return charge ? charge.name : null;
     }
 
+    goToControl(){
+      this.router.navigate(['admin/auth/excercise']);
+    }
+
 
   constructor(
     private router: Router, 

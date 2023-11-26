@@ -6,14 +6,12 @@
     </p>
     <p id="banner2">Selecciona Tu estado!</p>
     <div id="button_dropdown_combo">
-        <div class="dropdown">
-            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                {{ estadoSelecc }}
-            </button>
-            <ul class="dropdown-menu">
-                <li (click)="getEstado(estado)" *ngFor="let estado of estados">{{ estado }}</li>
-            </ul>
-        </div>
-        <button type="button" class="btn btn-send">BUSCAR!</button>
+        <div class="mb-3">
+            <select class="form-select" aria-label="Default select example" id="estadoSelect" name="estadoSelecc" [(ngModel)]="estadoSelecc">
+              <option  [value]="0">Seleccionar...</option>
+              <option *ngFor="let estado of estados" [value]="estado.state_id">{{ estado.name }}</option>
+            </select>
+        </div>       
+        <button type="button" class="btn btn-send" (click)="sendState()">BUSCAR!</button>
     </div>
 </div>

@@ -8,21 +8,38 @@
     <p id="banner3">Lista de Elecciones:</p>
 
     <div id="elections-container">
-        <div class="election-item en_proceso">
-
-            <p>Aguascalientes 2023 <br> (En proceso)</p>
-        </div>
-
-        <div class="election-item finalizado">
-            <p>Aguascalientes 2022 <br> (Finalizado)</p>
-        </div>
-
-        <div class="election-item finalizado">
-            <p>Aguascalientes 2019 <br> (Finalizado)</p>
-        </div>
-
-        <div class="election-item finalizado">
-            <p>Aguascalientes 2015 <br> (Finalizado)</p>
+        <div class="election-item" *ngFor="let exercise of exerciseList" [class.en_proceso]="exercise.enable" [class.finalizado]="!exercise.enable" (click)="toggleDetails(exercise)">
+            <p>{{ exercise.exercise_id }}</p>
+            <p>{{ exercise.date | date: 'dd/MM/yyyy' }}</p>
+            <p *ngIf="exercise.enable; else finalizada">(En proceso)</p>
+            <ng-template #finalizada>
+                <p>(Finalizada)</p>
+            </ng-template>
         </div>
     </div>
+    
 </div>
+
+
+<!-- [
+    {
+        "exercise_id": "AGS1AABABE",
+        "election_type_id": 1,
+        "state_id": 1,
+        "date": "2024-06-02T05:00:00.000Z",
+        "status": 0,
+        "enable": 1,
+        "ballots_ids": null,
+        "expected_votes": 2
+    },
+    {
+        "exercise_id": "AGS1CBFECA",
+        "election_type_id": 1,
+        "state_id": 1,
+        "date": "2023-12-17T06:00:00.000Z",
+        "status": 0,
+        "enable": 1,
+        "ballots_ids": null,
+        "expected_votes": 2
+    }
+] -->

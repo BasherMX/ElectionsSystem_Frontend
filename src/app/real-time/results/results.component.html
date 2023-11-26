@@ -9,13 +9,13 @@
         <div id="votos-esperados">
             <p>
                 Votos esperados <br>
-                <span class="cantidad_voto">1,500,000</span>
+                <span class="cantidad_voto">{{this.resultsData[0].expectedVotes}}</span>
             </p>
         </div>
         <div id="votos-realizados">
             <p>
                 Votos realizados <br>
-                <span class="cantidad_voto">525,000</span>
+                <span class="cantidad_voto">{{this.resultsData[0].totalVotes + this.resultsData[0].anuledVotes}}</span>
             </p>
         </div>
         <div id="footer_part">
@@ -174,14 +174,11 @@
 
 <div id="content">
     <div id="graph-container">
-        <div class="graph">
-            <p>Alcaldia</p>
-            <div id="column_chart_1"></div>
-        </div>
-        <div class="graph">
-            <p>Alcaldia</p>
-            <div id="column_chart_2"></div>
-        </div>
+      <div class="graph" *ngFor="let result of resultsData; let i = index">
+        <p>{{ result.charge_name }}</p>
+        <div id="donut_chart_{{i}}"></div>
+        <div id="column_chart_{{i}}"></div>
+      </div>
     </div>
 </div>
 

@@ -19,8 +19,8 @@ export class RealTimeService {
     return new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }
 
-  getBallotsByExerciseId(): Observable<any> {
-    const url = this.apiUrl + this.endpoints.getBallotsByExerciseId;
+  getBallotsByExerciseId(id:any): Observable<any> {
+    const url = this.apiUrl + this.endpoints.getBallotsByExerciseId +"/"+id;
     return this.http.get(url, { headers: this.getHeaders() });
   }
 

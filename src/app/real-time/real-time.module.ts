@@ -6,6 +6,7 @@ import { ElectionsListComponent } from './elections-list/elections-list.componen
 import { ResultsComponent } from './results/results.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { FormsModule } from '@angular/forms';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -24,6 +25,7 @@ export const routes: Routes = [
     FooterComponent
   ],
   imports: [
+    FormsModule,
     CommonModule,
     RouterModule.forChild(routes)
   ]

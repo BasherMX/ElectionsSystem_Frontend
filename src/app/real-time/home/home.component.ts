@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { RealTimeService } from 'src/app/services/realTime/real-time.service';
 
 @Component({
   selector: 'app-home',
@@ -6,44 +8,27 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.less']
 })
 export class HomeComponent {
-  public estados: string[] = [
-    "Aguascalientes",
-    "Baja California",
-    "Baja California Sur",
-    "Campeche",
-    "CDMX",
-    "Chiapas",
-    "Chihuahua",
-    "Coahuila",
-    "Colima",
-    "Durango",
-    "Guanajuato",
-    "Guerrero",
-    "Hidalgo",
-    "Jalisco",
-    "Estado de México",
-    "Michoacán",
-    "Morelos",
-    "Nayarit",
-    "Nuevo León",
-    "Oaxaca",
-    "Puebla",
-    "Querétaro",
-    "Quintana Roo",
-    "San Luis Potosí",
-    "Sinaloa",
-    "Sonora",
-    "Tabasco",
-    "Tamaulipas",
-    "Tlaxcala",
-    "Veracruz",
-    "Yucatán",
-    "Zacatecas"
-  ];
+  public estados: any[] = [];
+  public estadoSelecc: any = 0;
 
-  public estadoSelecc: string = this.estados[0];
+  constructor(private apiState:RealTimeService, private router: Router){
+    this.getStates();
 
-  public getEstado(estado: string) {
-    this.estadoSelecc = estado;
+  }
+
+  getStates(){
+    this.apiState.getAllStates().subscribe(
+      (res) =>{
+        this.estados = res;
+      },
+      (err) =>{
+
+      }
+    ) ;
+  }
+
+
+  public sendState() {
+    this.router.navigate(['realTime/election-list/',this.estadoSelecc]);
   }
 }

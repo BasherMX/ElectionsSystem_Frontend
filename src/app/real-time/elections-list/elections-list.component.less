@@ -49,14 +49,20 @@
     #elections-container {
         padding: 0;
         margin: 0;
+        padding-left: 8rem;
+        margin-top: 2rem;
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: space-evenly;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 25px;
         width: 100%;
         height: 30%;
-
+        
+        
         .election-item.en_proceso {
+            cursor: pointer;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -82,6 +88,7 @@
         }
 
         .election-item.finalizado {
+            cursor: pointer;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -148,12 +155,15 @@
         }
 
         #elections-container {
-            display: flex;
+            border: 1px solid red;
+            padding-left: 0rem;
             flex-direction: column;
             align-items: center;
-            justify-content: space-evenly;
-            width: 100%;
-            height: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
+           
+            width: 100vw;
+            height: max-content;
 
             .election-item.en_proceso {
                 // Rectangle size and background

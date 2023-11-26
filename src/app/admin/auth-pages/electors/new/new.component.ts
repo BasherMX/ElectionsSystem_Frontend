@@ -4,7 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { ElectorService } from 'src/app/services/electors/electors.service';
 import { FileService } from 'src/app/services/file/file.service';
 import { RealTimeService } from 'src/app/services/realTime/real-time.service';
-import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new',
@@ -36,7 +36,7 @@ export class NewComponent implements OnInit {
     private apiState: RealTimeService,
     private apiElector: ElectorService,
     private apiFile: FileService,
-    private http: HttpClient
+    private router: Router
   ) {
     this.getStates();
   }
@@ -98,7 +98,7 @@ export class NewComponent implements OnInit {
           
           this.apiElector.createElector(electorData).subscribe(
             (res) => {
-
+              this.router.navigate(['/admin/auth/electors']);
             },
             (err) => {
               alert(err.error);
