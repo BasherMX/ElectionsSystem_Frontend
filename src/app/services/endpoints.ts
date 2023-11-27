@@ -25,6 +25,7 @@ export const Endpoints = {
   realTime: {
     getBallotsByExerciseId: '/realTime/getBallotsByExerciseId',
     getAllStates: '/realTime/getAllStates',
+    getAllExcersices: '/realTime/getAllExcersices'
   },
   politicalParty: {
     getAllEnable: '/politicalParty/getAllEnable',

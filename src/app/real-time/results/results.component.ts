@@ -44,21 +44,21 @@ export class ResultsComponent implements OnInit {
     );
   }
 
+  
+
   ngOnInit() {
     google.charts.load('current', { packages: ['corechart'] });
   }
 
   drawDonutCharts() {
-    for (let i = 0; i < this.resultsData.length; i++) {
-      this.drawDonutChart(i);
-    }
+    this.drawDonutChart();
   }
 
-  drawDonutChart(index: number) {
-    const votos_realizados = this.resultsData[index].totalVotes + this.resultsData[index].anuledVotes;
-    const votos_esperados = this.resultsData[index].expectedVotes;
+  drawDonutChart() {
+    const votos_realizados = this.resultsData[0].totalVotes + this.resultsData[0].anuledVotes;
+    const votos_esperados = this.resultsData[0].expectedVotes;
     const porcentaje_realizados = (votos_realizados / votos_esperados) * 100;
-    const porcentaje_mostrar = Math.min(porcentaje_realizados, 100);
+    const porcentaje_mostrar = Math.min(porcentaje_realizados || 0, 100);
 
     const data = google.visualization.arrayToDataTable([
       ['Votos', 'Cantidad'],
@@ -67,7 +67,7 @@ export class ResultsComponent implements OnInit {
     ]);
 
     const options = {
-      pieHole: 0.5,
+      pieHole: .7,
       backgroundColor: '#E0E0E0',
       colors: ['#EE007E', '#ADADAD'],
       legend: 'none',
@@ -77,34 +77,49 @@ export class ResultsComponent implements OnInit {
       }
     };
 
-    const chart = new google.visualization.PieChart(document.getElementById(`donut_chart_${index}`));
+    const chart = new google.visualization.PieChart(document.getElementById(`donut_chart_1`));
     chart.draw(data, options);
   }
 
   drawBarCharts() {
     for (let i = 0; i < this.resultsData.length; i++) {
-      this.drawBarChart(i);
+      this.drawBarChart(i, this.resultsData[i].candidates);
     }
   }
 
-  drawBarChart(index: number) {
-    const data = google.visualization.arrayToDataTable([
-      ['Partido Politico', 'Votos', { role: 'style' }],
-      ['PAN', 150000, 'color: #0084FF'],
-      ['PRI', 200000, 'color: #28FF20'],
-      ['PT', 500000, 'color: #FF0000'],
-      ['PRD', 350000, 'color: #FFFB0B'],
-      ['Otro', 100000, 'color: grey']
-    ]);
+  getFormattedDate(): string {
+    const currentDate = new Date();
 
+    const day = this.padNumber(currentDate.getDate());
+    const month = this.padNumber(currentDate.getMonth() + 1); // Los meses comienzan desde 0
+    const year = currentDate.getFullYear();
+    const hours = this.padNumber(currentDate.getHours());
+    const minutes = this.padNumber(currentDate.getMinutes());
+
+    return `${day}/${month}/${year} ${hours}:${minutes}hrs`;
+  }
+
+  private padNumber(number: number): string {
+    return number < 10 ? `0${number}` : `${number}`;
+  }
+
+  drawBarChart(index: number, data: any[]) {
+    // Convierte los datos proporcionados en el formato esperado por google.visualization
+    const chartData = [['Partido Politico', 'Votos', { role: 'style' }]];
+    data.forEach(candidate => {
+      chartData.push([candidate.party_accronym, candidate.totalVotes, `color: ${candidate.party_color}`]);
+    });
+  
+    const dataTable = google.visualization.arrayToDataTable(chartData);
+  
     const options = {
-      legend: 'none'
+      legend: 'none',
     };
-
+  
     const chart = new google.visualization.ColumnChart(
       document.getElementById(`column_chart_${index}`)
     );
-
-    chart.draw(data, options);
+  
+    chart.draw(dataTable, options);
   }
 }

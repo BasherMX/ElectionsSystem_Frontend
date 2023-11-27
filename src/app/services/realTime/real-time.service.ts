@@ -28,4 +28,11 @@ export class RealTimeService {
     const url = this.apiUrl + this.endpoints.getAllStates;
     return this.http.get(url, { headers: this.getHeaders() });
   }
+
+
+  getAllExcersices(): Observable<any> {
+    const url = this.apiUrl + this.endpoints.getAllExcersices;
+    return this.http.get(url, { headers: this.getHeaders() });
+  }
+
 }
