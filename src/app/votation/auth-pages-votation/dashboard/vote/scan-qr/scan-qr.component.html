@@ -1,3 +1,15 @@
-<p id="caption">{{ scannerStatus }}</p>
-<canvas #canvas></canvas>
-<div class="bounding-box"><video #video autoplay></video></div>
+
+<div class="escaneo">
+    <div class="espiner_box" *ngIf="isScanning">
+        <div class="spinner-border spinner-border-lg text-primary espiner" role="status">
+        </div>
+    </div>   
+
+    <p id="caption">{{ scannerStatus }}</p>
+    <canvas #canvas></canvas>
+    <div class="bounding-box">
+        <video #video autoplay>     
+        </video>
+    </div>
+    
+</div>

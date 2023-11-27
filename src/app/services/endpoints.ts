@@ -18,8 +18,9 @@ export const Endpoints = {
   },
   vote: {
     verifyCanVote: '/vote/verifyCanVotate',
-    getBallotsByExerciseId: '/vote/getBallotsByExerciseId',
+    getBallotsByExerciseId: (id:string) => `/vote/getBallotsByExerciseId/${id}`,
     voteForCandidate: '/vote/voteForCandidate',
+    getElectorImage: (id:string) => `/vote/getElectorImage/${id}`
   },
   realTime: {
     getBallotsByExerciseId: '/realTime/getBallotsByExerciseId',

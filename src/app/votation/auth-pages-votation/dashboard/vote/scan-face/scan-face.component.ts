@@ -6,8 +6,7 @@ import { ProcessFaceService } from '../services/process-face.service';
 import { StepsService } from '../steps.service';
 import { UserDataService } from '../user-data.service';
 import { AccesService } from '../services/acces.service';
-
-const URL = 'http://localhost:3000';
+import { VoteService } from 'src/app/services/vote/vote.service';
 
 @Component({
   selector: 'app-scan-face',
@@ -24,7 +23,8 @@ export class ScanFaceComponent implements OnInit, OnDestroy {
 
   public context!: CanvasRenderingContext2D;
 
-  constructor(private http: HttpClient, private processFaceSyn: ProcessFaceService, public stepService: StepsService, private userService: UserDataService, public accesService: AccesService) { }
+  constructor(private http: HttpClient, private processFaceSyn: ProcessFaceService, public stepService: StepsService, private userService: UserDataService, public accesService: AccesService,
+    private apiVote: VoteService) { }
 
   ngOnInit(): void {
     this.main();
@@ -75,7 +75,6 @@ export class ScanFaceComponent implements OnInit, OnDestroy {
         //console.log('Sin rostro detectado');
         return;
       }
-
       this.processFaceSyn.descriptor(detection);
     }
     this.detectionInterval = setInterval(processFace, 2000);
@@ -83,15 +82,18 @@ export class ScanFaceComponent implements OnInit, OnDestroy {
   }
 
   imagesLista() {
-    //console.log(this.userService.getId());
-    this.http.get<any>(`${URL}/usuarios/${this.userService.getId()}`).subscribe((res: Imagenes) => {
-      this.imagenes = res;
-      this.imagenes.forEach((imagen: any) => {
+    this.apiVote.getElectorImage(this.userService.getId()).subscribe(
+      (res) =>{
         const imageElement = document.createElement("img");
-        imageElement.src = `${URL}/${imagen.imagen}`;
+        imageElement.src = res.picture;
         imageElement.crossOrigin = 'anonymous';
-        this.processFaceSyn.processFace(imageElement, imagen.id);
-      })
-    })
+        this.processFaceSyn.processFace(imageElement, this.userService.getId());
+      },
+      (err) => {
+
+      }
+    );
   }
+
+
 }

@@ -12,11 +12,13 @@ export class UserDataService {
   constructor() { }
 
   getId(): string {
+    console.log("service id get: " + this.id);
     return this.id;
   };
 
   setId(value: string) {
     this.id = value;
+    console.log("servie id: " + this.id);
   };
 
   getName(): string {

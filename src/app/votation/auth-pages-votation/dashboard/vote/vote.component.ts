@@ -1,14 +1,13 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { StepsService } from './steps.service';
 import { UserDataService } from './user-data.service';
-import { HttpClient } from '@angular/common/http';
-
-const URL = 'http://localhost:3000';
+import { VoteService } from 'src/app/services/vote/vote.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-vote',
   templateUrl: './vote.component.html',
-  styleUrls: ['./vote.component.less']
+  styleUrls: ['./vote.component.less'],
 })
 export class VoteComponent {
   @ViewChild('cameraFeed') cameraFeed!: ElementRef;
@@ -19,11 +18,14 @@ export class VoteComponent {
   opciones: Array<any> = [];
   opcionesTotales = 0;
   opcionesTotalesArray: number[] = [];
+  hasSelectedOption: boolean = false;
+
 
   votos: Array<any> = [];
   selectedOption: number = 0;
 
   envioVotos: Array<any> = [];
+  excersiceID: string = '';
   resultados: Array<any> = [];
 
   stepB = 1;
@@ -31,46 +33,88 @@ export class VoteComponent {
   constructor(
     public stepService: StepsService,
     public userData: UserDataService,
-    private http: HttpClient
+    private apiVote: VoteService,
+    private route: ActivatedRoute,
+    private router: Router
   ) {
+    this.route.params.subscribe((params) => {
+      this.excersiceID = params['ExerciseId'];
+    });
     this.stepService.currentStep$.subscribe((step) => {
       //console.log(`Step=  ${step}`);
       if (step == 4) {
         this.cargarOpciones();
       }
+      if (step == 6) {
+        this.clearAll();
+      }
+      // this.stepService.change(0);
     });
+  }
+
+  clearAll(){
+    console.log("si borre");
+      this.dataBoleta = [];
+      this.opciones = [];
+      this.opcionesTotales = 0;
+      this.opcionesTotalesArray = [];
+      this.votos = [];
+      this.selectedOption = 0;
+      this.envioVotos = [];
+      this.resultados = [];
+      this.stepB = 1;
+      this.hasSelectedOption = false;
+
+
+      console.log(this.dataBoleta,
+        this.opciones,
+        this.opcionesTotales,
+        this.opcionesTotalesArray,
+        this.votos,
+        this.selectedOption,
+        this.envioVotos,
+        this.excersiceID,
+        this.resultados,
+        this.stepB = 1)
   }
 
   up() {
     this.stepService.up();
-    if (this.stepService.currentStep > 5 || this.stepService.currentStep < 0) {
+    if (this.stepService.currentStep == 6) {
       this.stepService.change(1);
+      this.clearAll();
     }
   }
 
   cargarOpciones() {
-    this.http.get<any>(`${URL}/boleta`).subscribe((data) => {
-      this.dataBoleta = data;
-      this.opcionesTotales = this.dataBoleta.length;
-      this.opciones = this.dataBoleta[this.stepB - 1].candidates;
-      this.selectedOption = 0;
-    });
+    this.apiVote.getBallotsByExerciseId(this.excersiceID).subscribe(
+      (res) => {
+        this.dataBoleta = res;
+        this.opcionesTotales = this.dataBoleta.length;
+        this.opciones = this.dataBoleta[this.stepB - 1].candidates;
+        this.selectedOption = 0;
+      },
+      (err) => {}
+    );
   }
-
 
   selectOption(option: any) {
-    if (this.selectedOption == option) {
+    if (this.selectedOption === option) {
       this.selectedOption = 0;
+      this.hasSelectedOption = false;
     } else {
       this.selectedOption = option;
+      this.hasSelectedOption = true;
     }
   }
+  
 
   isOptionSelected(option: any): boolean {
     return this.selectedOption === option;
   }
 
   changeOpc() {
+    this.hasSelectedOption = false;
     this.votos.push(this.selectedOption);
     if (this.stepB >= this.opcionesTotales) {
       this.enviarVotos();
@@ -85,37 +129,36 @@ export class VoteComponent {
 
   enviarVotos() {
     for (let i = 0; i < this.votos.length; i++) {
-      if (this.votos[i].id > 0) {
-        const estructure = {
-          ballot_id: this.dataBoleta[i].ballot_id,
-          candidate_id: this.votos[i].id,
-          isSpoiledVote: false,
-        };
-        this.resultados.push(`${this.votos[i].name} ${this.votos[i].first_lastname} ${this.votos[i].second_lastname}`);
-        this.envioVotos.push(estructure);
-      } else {
-        const estructure = {
-          ballot_id: this.dataBoleta[i].ballot_id,
-          candidate_id: 0,
-          isSpoiledVote: true,
-        };
-        this.resultados.push('Voto omitido');
-        this.envioVotos.push(estructure);
+      let spoiled = false;
+      if (this.votos[i].candidate_id == 0) {
+        spoiled = true;
       }
-    }
 
-    //Mandamos el array envioVotos
+      const estructure = {
+        ballot_id: this.dataBoleta[i].ballot_id,
+        candidate_id: this.votos[i].candidate_id,
+        isSpoiledVote: spoiled,
+      };
+
+      this.resultados.push(
+        `${this.votos[i].name} ${this.votos[i].first_lastname} ${this.votos[i].second_lastname}`
+      );
+      this.envioVotos.push(estructure);
+    }
     const jsonEnvioVotos = {
+      elector_id: this.userData.getId(),
+      exercise_id: this.excersiceID,
       votes: this.envioVotos,
     };
-    const jsonString = JSON.stringify(jsonEnvioVotos);
-    console.log(jsonString);
 
-    const body = { id: this.userData.getId(), voto: 1 };
-
-    this.http.post(`${URL}/actualizar`, body).subscribe(
-      (response) => {
-        console.log('Respuesta del servidor:', response);
+    this.apiVote.voteForCandidate(jsonEnvioVotos).subscribe(
+      (res) => {
+        // this.router.navigate(['/votation/dashboard/vote/'+this.excersiceID]);
+        // console.log(res); // Agrega este console.log
+      },
+      (err) => {
+        // this.router.navigate(['/votation/dashboard/vote/'+this.excersiceID]);
+        // alert('error aa' + err.error.error);
       }
     );
   }

@@ -26,23 +26,27 @@ export class StepsService {
     if (this.currentStep > 5 || this.currentStep < 0) {
       this.currentStep = 1;
     }
+    if (this.currentStep == 8 ||  this.currentStep == 5) {
+      this.count(6);
+    }
+    console.log(this.currentStep);
   }
 
   change(value: number) {
     this.currentStep = value;
-    if (value == 0) {
-      this.count();
+    if (value == 0 || value == 8 || value == 5) {
+      this.count(10);
     }
   }
 
-  count() {
-    this.seconds = 10;
+  count(num: number) {
+    this.seconds = num;
     const intervalId = setInterval(() => {
       this.seconds--;
       if (this.seconds <= 0) {
         clearInterval(intervalId);
         this.up();
       }
-    }, 1000);
+    }, 800);
   }
 }

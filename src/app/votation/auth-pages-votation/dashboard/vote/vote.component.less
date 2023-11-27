@@ -94,11 +94,11 @@
 
     #warning {
         width: 20%;
-        min-width: 300px;
+        min-width: 200px;
     }
 
     #atencion {
-        font-size: 9vw;
+        font-size: 5rem;
         font-weight: 600;
         color: @Black;
     }
@@ -173,11 +173,12 @@
     }
 
     #boleta {
-        width: 80%;
+        width: 95%;
         margin-left: 10%;
         text-align: center;
         margin-right: 10%;
         background-color: #F2F2F2;
+        padding-bottom: 2rem;
 
         #tipo {
             font-size: 3vw;
@@ -193,7 +194,7 @@
             margin-left: 10%;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            grid-gap: 100px;
+            grid-gap: 50px;
         }
 
         #card {
@@ -204,17 +205,19 @@
             display: flex;
             flex-direction: row;
             cursor: pointer;
+
         }
 
         #card.selected {
-            border: 2px solid @Black;
+            outline: 4px solid @Black;
         }
 
         .image {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 150px;
+            min-width: 175px;
+            width: 175px;
             margin-right: 10px;
         }
     }
@@ -255,6 +258,13 @@
             text-shadow: 2px 2px @PrimaryColor;
         }
     }
+}
+
+.candidateName{
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    text-align: left;
 }
 
 .step5 {
@@ -311,6 +321,8 @@
                 flex-direction: column;
                 align-items: center;
                 margin-bottom: 50px;
+                text-align: left;
+
 
                 #cargo {
                     color: @Black;

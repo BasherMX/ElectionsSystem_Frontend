@@ -31,6 +31,20 @@
     </div>
 </div>
 
+<div class="step0" *ngIf="stepService.currentStep === 8">
+    <img id="logo" src="../../../../../assets/Images/Logo_Instituto_Nacional_Electoral.svg.svg" alt="">
+    <img id="warning" src="../../../../../assets/Images/warning_machine.png" alt="">
+    <p id="atencion">ATENCIÓN</p>
+    <p id="voto-emitido">Tu estado no coincide con el de la votacion</p>
+    <p id="informacion-legal">“No puedes votar en esta eleccion, debido a que el estado con el que estas registrado en
+        el sistema no coincide con el estado donde se lleva acabo la eleccion”
+    </p>
+    <div id="content-progress-bar">
+        <div class="progress-bar"></div>
+        <p>{{stepService.seconds}} segundos</p>
+    </div>
+</div>
+
 <div class="step3" *ngIf="stepService.currentStep === 3">
     <img src="../../../../../assets/Images/Logo_Instituto_Nacional_Electoral.svg.svg" alt="">
     <div id="content">
@@ -50,16 +64,18 @@
     <p class="title">VOTACIÓN</p>
     <div id="boleta">
         <p id="tipo">{{ dataBoleta[stepB-1]?.charge_name }}</p>
-        <p id="estado">Estado: {{ userData.getEstado() }}</p>
+        <p id="estado">Estado: {{ dataBoleta[stepB-1]?.state_name }}</p>
         <div id="opciones">
-            <div id="card" *ngFor="let opc of opciones" (click)="selectOption(opc)" [class.selected]="isOptionSelected(opc)">
+            <div id="card" *ngFor="let opc of opciones" (click)="selectOption(opc)"
+                [class.selected]="isOptionSelected(opc)">
                 <div class="image">
-                    <img [src]="opc.party_image" alt="">
+                    <img [src]="opc.party_image" style="width: 100%;" alt="" />
                 </div>
-                <div class="text">
-                    <p>{{ opc.name }} {{ opc.first_lastname }} {{ opc.second_lastname }}</p>
-                    <p>{{ opc.party_id }}</p>
-                    <p>{{ opc.pseudonym }}</p>
+                <div class="text"
+                    style="text-align: left; padding-left: 1rem; display: flex; flex-direction: column; align-items: space-evenly; justify-content: center;">
+                    <p class="candidateName">{{ opc.completeName }}</p>
+                    <p *ngIf="opc.pseudonym != null">{{'"'+ opc.pseudonym+'"'}}</p>
+                    <p *ngIf="opc.party_name != null" style="font-weight: bold;">{{ opc.party_name }}</p>
                 </div>
             </div>
         </div>
@@ -72,21 +88,17 @@
     </div>
     {{stepB}} de {{ opcionesTotales }}
 
-    <button (click)="changeOpc()">REALIZAR VOTO</button>
+    <button *ngIf="stepB !== opcionesTotales && hasSelectedOption" (click)="changeOpc()">REALIZAR VOTO</button>
+    <button *ngIf="stepB === opcionesTotales && hasSelectedOption" (click)="changeOpc()">TERMINAR VOTACION</button>
+
 </div>
 
-<div class="step5" *ngIf="stepService.currentStep === 5">
-    <img src="../../../../../assets/Images/Logo_Instituto_Nacional_Electoral.svg.svg" alt="">
-    <p class="title">RESUMEN DE VOTACIÓN</p>
-    <div id="boleta">
-        <div id="opciones">
-            <div id="card" *ngFor="let opc of votos; let i = index;">
-                <div class="text">
-                    <p id="cargo">{{dataBoleta[i].charge_name}}</p>
-                    <p id="label">Voto Emitido: </p>
-                    <p id="nombre">{{resultados[i]}}</p>
-                </div>
-            </div>
-        </div>
+<div class="step0" *ngIf="stepService.currentStep === 5">
+    <img id="logo" src="../../../../../assets/Images/Logo_Instituto_Nacional_Electoral.svg.svg" alt="">
+    <p id="atencion">Votacion Finalizada</p>
+    <p id="voto-emitido">Gracias</p>
+    <div id="content-progress-bar">
+        <div class="progress-bar"></div>
+        <p>{{stepService.seconds}} segundos</p>
     </div>
 </div>

@@ -19,18 +19,25 @@ export class VoteService {
     return new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }
 
-  verifyCanVote(): Observable<any> {
+  // router.get('/getElectorImage/:elector_id', getElectorImage);
+
+  getElectorImage(data:string): Observable<any>{
+    const url = this.apiUrl + this.endpoints.getElectorImage(data);
+    return this.http.get(url,{ headers: this.getHeaders() });
+  }
+
+  verifyCanVote(data: any): Observable<any> {
     const url = this.apiUrl + this.endpoints.verifyCanVote;
+    return this.http.post(url,data, { headers: this.getHeaders() });
+  }
+
+  getBallotsByExerciseId(id: string): Observable<any> {
+    const url = this.apiUrl + this.endpoints.getBallotsByExerciseId(id);
     return this.http.get(url, { headers: this.getHeaders() });
   }
 
-  getBallotsByExerciseId(): Observable<any> {
-    const url = this.apiUrl + this.endpoints.getBallotsByExerciseId;
-    return this.http.get(url, { headers: this.getHeaders() });
-  }
-
-  voteForCandidate(): Observable<any> {
+  voteForCandidate(votes:any): Observable<any> {
     const url = this.apiUrl + this.endpoints.voteForCandidate;
-    return this.http.post(url, {}, { headers: this.getHeaders() });
+    return this.http.post(url, votes, { headers: this.getHeaders()});
   }
 }

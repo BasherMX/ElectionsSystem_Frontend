@@ -1,14 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http'
-
-
-
-
 import { LoginComponent } from './admin/pages/login/login.component';
 import { NotFoundComponent } from './commonComponents/not-found/not-found.component';
 import { DropdownComponent } from './commonComponents/dropdown/dropdown.component';
